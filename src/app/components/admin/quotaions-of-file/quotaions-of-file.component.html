@@ -1,0 +1,76 @@
+<div id="Qoutation_Details">
+    <div class="accepted" >
+        <div class="container">
+            <div class="d-flex justify-content-start mx-5 mt-5">
+                <p class="font_Coloered3 text-center">All File Quotaions</p>
+            </div> 
+            <div class="outerBorder shadow_5 py-5">
+                <div class="row">
+                    <div class="col-md-12 my-5" data-aos-duration="1000" data-aos="fade-right">
+                        <p class="font_Coloered3 text-center">Parents Quotaions</p>
+                        <table class="table table-striped text-center">
+                            <thead class="tableHead">
+                                <th class="py-2">Parent</th>
+                                <th class="py-2">NoOfKids</th>
+                                <th class="py-2">Net Premium</th>
+                                <th class="py-2">Issue Fees</th>
+                                <th class="py-2">Admin Fees</th>
+                                <th class="py-2">Gross Annual Premium</th>
+                                <th class="py-2">Total Sum Insured</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of ParentsQuotaions">
+                                    <td class="align-middle">{{item.parentName}}</td>
+                                    <td class="align-middle">{{item.noOfKids}}</td>
+                                    <td class="align-middle">{{item.netPremium|number:'1.0-7'}}</td>
+                                    <td class="align-middle">{{item.issueFees}}</td>
+                                    <td class="align-middle">{{item.adminFees}}</td>
+                                    <td class="align-middle">{{item.grossAnnualPremium |number:'1.0-7'}}</td>
+                                    <td class="align-middle">{{item.totalSumInsured}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="loading" *ngIf="loadingParents">
+                            <app-spinner class="d-flex justify-content-center m-auto"></app-spinner>
+                        </div>
+                    
+                    </div>
+                    <div class="col-md-12" data-aos-duration="1000" data-aos="fade-right">
+                        <p class="font_Coloered3 text-center">Kids Quotaions</p>
+                        <table class="table table-striped text-center">
+                            <thead class="tableHead">
+                                <th class="py-2">Kid</th>
+                                <th class="py-2">Parent</th>
+                                <th class="py-2">NoOfKids</th>
+                                <th class="py-2">Net Premium</th>
+                                <th class="py-2">Issue Fees</th>
+                                <th class="py-2">Admin Fees</th>
+                                <th class="py-2">Gross Annual Premium</th>
+                                <th class="py-2">Total Sum Insured</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of KidsQuotaions">
+                                    <td class="align-middle">{{item.parentName}}</td>
+                                    <td class="align-middle">{{item.kidsName}}</td>
+                                    <td class="align-middle">{{item.noOfKids}}</td>
+                                    <td class="align-middle">{{item.netPremium|number:'1.0-7'}}</td>
+                                    <td class="align-middle">{{item.issueFees}}</td>
+                                    <td class="align-middle">{{item.adminFees}}</td>
+                                    <td class="align-middle">{{item.grossAnnualPremium |number:'1.0-7'}}</td>
+                                    <td class="align-middle">{{item.totalSumInsured}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="loading" *ngIf="loadingParents">
+                            <app-spinner class="d-flex justify-content-center m-auto"></app-spinner>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+    
+            </div>
+        </div>
+    </div>
+    
+</div>

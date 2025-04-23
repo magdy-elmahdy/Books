@@ -1,0 +1,114 @@
+<div id="All_Kids">
+    <div class="container">
+        <div class="d-flex justify-content-between mx-5 pt-3">
+            <div class="d-flex">
+                <p class="font_Coloered3 text-center my-4">All Kids</p>
+            </div>
+            <input class="form-control w-25 ml-auto mt-3" style="height: 3rem;" [(ngModel)]='term' placeholder="Search With Kid Name .." />
+        </div>  
+        <div class="outerBorder outerItem shadow_5 py-5">
+       
+                <table class="table table-striped text-center">
+                    <thead class="tableHead">
+                        <th class="py-2">Kid name</th>
+                        <th class="py-2">School name</th>
+                        <th class="py-2">Grade</th>
+                        <th class="py-2">Fees</th>
+                        <th>Settings</th>
+                    </thead>
+                    <tbody *ngIf="this.ErrorMsg==''">
+                        
+                        <tr *ngFor="let Kid of AllKids|search:term|paginate:{
+                            itemsPerPage:tableSize,
+                            currentPage:page,
+                            totalItems:count}; let i=index">
+                            <td class="align-middle">{{Kid.kidsName}}</td>
+                            <td class="align-middle">{{Kid.schoolName}}</td>
+                            <td class="align-middle">{{Kid.grade}}</td>
+                            <td class="align-middle">{{Kid.fees}}</td>
+                            <td style="vertical-align: middle;">
+                                <i (click)="getKidInfoToEdit(Kid)" data-bs-toggle="modal" data-bs-target="#editKid" class="fa-solid fa-pencil fs-5 px-3 py-2 mx-1" style="color:#3F51B5;"></i>
+                                <i (click)="deleteKidById(Kid.kidsId)" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+                <div class="d-flex justify-content-end mt-4">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+                    <select style="border: solid 2px #4758B8;" (change)="onTableSizeChange($event)" class="tableSize rounded-pill px-1">
+                      <option *ngFor=" let size of tableSizes">{{size}}</option>
+                    </select>
+                </div>
+                <div id="loading" *ngIf="loading">
+                    <app-spinner class="d-flex justify-content-center m-auto"></app-spinner>
+                </div>
+    
+                    <!--------------------------------------- Edit Kid Modal --------------------------->
+            <div class="modal fade" id="editKid" tabindex="-1" aria-labelledby="editKid" aria-hidden="true">
+                <div class="modal-dialog" >
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5">Edit Kid</h1>
+                        </div>
+                        <div class="container">
+                            <div class="row my-4">
+                                <div class="col-md-5 offset-md-1">
+                                    <mat-form-field class="w-100" appearance="fill" color="primary" data-aos-duration="700" data-aos="fade-right">
+                                        <mat-label>Name</mat-label>
+                                        <input [(ngModel)]="kidName" type="text" matInput>
+                                    </mat-form-field>
+                                    <mat-form-field class="w-100" appearance="fill" color="accent">
+                                        <mat-label>Fees</mat-label>
+                                        <mat-select [(value)]="feesVal">
+                                            <mat-option value="10000">10000</mat-option>
+                                            <mat-option value="20000">20000</mat-option>
+                                            <mat-option value="30000">30000</mat-option>
+                                            <mat-option value="40000">40000</mat-option>
+                                            <mat-option value="50000">50000</mat-option>
+                                            <mat-option value="60000">60000</mat-option>
+                                            <mat-option value="70000">70000</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-5">
+                                    <mat-form-field class="w-100" appearance="fill" color="accent">
+                                        <mat-label>School</mat-label>
+                                        <mat-select [(value)]="schoolId">
+                                            <mat-option *ngFor="let school of AllSchools" data-id="{{school.name}}" value="{{school.schoolsId}}">{{school.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <mat-form-field class="w-100" appearance="fill" color="accent">
+                                        <mat-label>Grade</mat-label>
+                                        <mat-select [(value)]="gradeVal">
+                                            <mat-option value="1">1</mat-option>
+                                            <mat-option value="2">2</mat-option>
+                                            <mat-option value="3">3</mat-option>
+                                            <mat-option value="4">4</mat-option>
+                                            <mat-option value="5">5</mat-option>
+                                            <mat-option value="6">6</mat-option>
+                                            <mat-option value="7">7</mat-option>
+                                            <mat-option value="8">8</mat-option>
+                                            <mat-option value="9">9</mat-option>
+                                            <mat-option value="10">10</mat-option>
+                                            <mat-option value="11">11</mat-option>
+                                            <mat-option value="12">12</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-md-6 offset-md-1">
+                                    <button (click)="SubmitEditKid()" mat-raised-button color="primary" class="w-50">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

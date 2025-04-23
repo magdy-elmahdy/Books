@@ -1,0 +1,55 @@
+<div id="All_parents">
+    <div class="container">
+        <div class="d-flex justify-content-between mx-5 pt-3">
+            <div class="d-flex">
+                <p class="font_Coloered3 text-center my-4">All Parents</p>
+            </div>
+            <input class="form-control w-25 ml-auto mt-3" style="height: 3rem;" [(ngModel)]='term' placeholder="Search With Parent Name .." />
+        </div>  
+        <div class="outerBorder outerItem shadow_5 py-5">
+       
+                <table class="table table-striped text-center">
+                    <thead class="tableHead">
+                        <th class="py-2"> Name</th>
+                        <th class="py-2"> Phone Number</th>
+                        <th class="py-2"> Email</th>
+                        <th class="py-2"> D.O.B</th>
+                        <th class="py-2">Age</th>
+                        <th class="py-2">Kids No.</th>
+                        <th>Settings</th>
+                    </thead>
+                    <tbody>
+                        
+                        <tr *ngFor="let parent of AllParents|search:term|paginate:{
+                            itemsPerPage:tableSize,
+                            currentPage:page,
+                            totalItems:count}; let i=index">
+                            <td class="align-middle">{{parent.parentName}}</td>
+                            <td class="align-middle">{{parent.phoneNumber}}</td>
+                            <td class="align-middle">{{parent.email}}</td>
+                            <td class="align-middle">{{parent.dateOfBirthDay|date:'shortDate'}}</td>
+                            <td class="align-middle">{{parent.age}}</td>
+                            <td class="align-middle">{{parent.numOfKids}}
+                                <i *ngIf="parent.numOfKids !=''" routerLink="/AllKids/{{parent.parentId}}" class="fa-regular fa-eye text-success fs-5 px-3 py-2"></i>
+                            </td>
+                            <td style="vertical-align: middle;">
+                                <i (click)="deleteParentById(parent.parentId)" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
+                            
+                            </td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+                <div class="d-flex justify-content-end mt-4">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+                    <select style="border: solid 2px #4758B8;" (change)="onTableSizeChange($event)" class="tableSize rounded-pill px-1">
+                      <option *ngFor=" let size of tableSizes">{{size}}</option>
+                    </select>
+                </div>
+                <div id="loading" *ngIf="loading">
+                    <app-spinner class="d-flex justify-content-center m-auto"></app-spinner>
+                </div>
+        </div>
+    </div>
+</div>

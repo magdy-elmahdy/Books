@@ -1,0 +1,561 @@
+<div id="Father_Form">
+    <div class="container">
+        <div class="d-flex justify-content-start mx-5 mt-5">
+            <p class="font_Coloered3 text-center">Proposal</p>
+        </div>
+        <form [formGroup]="proposalForm">
+            <div class="outerBorder shadow_5">
+                <!-- Question 1 -->
+                <div class="row justify-content-center">
+                    <h2 class="mb-2">1- <span class="p_2">Enter the Following</span> :</h2>
+                    <div class="row mt-3">
+                        <div class="col-md-4 offset-md-2">
+    
+                            <mat-form-field class="w-100" appearance="fill" color="primary" data-aos-duration="700"
+                                data-aos="fade-right">
+                                <mat-label>Height</mat-label>
+                                <input formControlName="height" type="text" matInput>
+                                <mat-icon matIconSuffix style="color: rgba(0, 0, 0, 0.6);"> <i class="fa-solid fa-ruler-vertical"></i></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="w-100" appearance="fill" color="primary" data-aos-duration="700"
+                                data-aos="fade-left">
+                                <mat-label>Weight</mat-label>
+                                <input formControlName="weight" type="text" matInput>
+                                <mat-icon matIconSuffix style="color: rgba(0, 0, 0, 0.6);"> <i class="fa-solid fa-weight-scale"></i></mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!--  Question 2-->
+                <div data-aos-duration="700" data-aos="fade-left">
+                    <h2>2- <span class="p_2"> Have you used tobacco in the last 12 months</span> ?</h2>
+                    <div class="row mt-3">
+    
+                        <div class="col-md-6 col-sm-12">
+                            <mat-radio-button (change)="getTobacco($event)" value="true"
+                                name="last12Mon"></mat-radio-button>
+                            <label>Yes</label>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <mat-radio-button (change)="getTobacco($event)" value="false"
+                                name="last12Mon"></mat-radio-button>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="tobacoQuestions" class="mt-3 p-2" style="display: none;background-color: rgba(0, 0, 0, 0.15); border-radius: 0.5rem;">
+                    <!--  Question 2.1-->
+                    <div class="mt-3">
+                        <h2>2.1-<span class="p_2"> If Vape </span> ?</h2>
+                        <div class="row mt-2">
+                            <mat-radio-group formControlName="vape" aria-label="Select an option">
+                                <div class="col-md-6 col-sm-12">
+                                    <mat-radio-button value="yes" name="vape"></mat-radio-button>
+                                    <label>Yes</label>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <mat-radio-button value="no" name="vape"></mat-radio-button>
+                                    <label>No</label>
+                                </div>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                    <!--  Question 2.2-->
+                    <div class="mt-3">
+                        <h2>2.2-<span class="p_2"> If Cigarettes specify the Daily frequency</span> .</h2>
+                        <mat-radio-group formControlName="cigarettes" aria-label="Select an option">
+                        <div class="row mt-2">
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="None"
+                                    name="Cigarettes"></mat-radio-button>
+                                <label>None</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="1 to 9 per day"
+                                    name="Cigarettes"></mat-radio-button>
+                                <label>1 to 9 per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="10 to 19 per day"
+                                    name="Cigarettes"></mat-radio-button>
+                                <label>10 to 19 per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="20 to 29 per day"
+                                    name="Cigarettes"></mat-radio-button>
+                                <label>20 to 29 per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="30 or more per day"
+                                    name="Cigarettes"></mat-radio-button>
+                                <label>30 or more per day</label>
+                            </div>
+                            
+                        </div>
+                    </mat-radio-group>
+                    </div>
+                    <!--  Question 2.3-->
+                    <div class="mt-3">
+                        <h2>2.3-<span class="p_2">If Shisha, please specify frequency</span> .</h2>
+                        <mat-radio-group formControlName="shisha" aria-label="Select an option">
+                        <div class="row mt-2">
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="None" name="shisha"></mat-radio-button>
+                                <label>None</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="Once per day" name="shisha"></mat-radio-button>
+                                <label>Once per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="More than once a day" name="shisha"></mat-radio-button>
+                                <label>More than once a day </label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="Once per week" name="shisha"></mat-radio-button>
+                                <label>Once per week</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="Once per month" name="shisha"></mat-radio-button>
+                                <label>Once per month</label>
+                            </div>
+                            
+                        </div>
+                    </mat-radio-group>
+                    </div>
+                    <!--  Question 2.4-->
+                    <div class="mt-3">
+                        <h2>2.4-<span class="p_2"> If E-Cigarettes specify the Daily frequency</span> .</h2>
+                        <mat-radio-group formControlName="ecigarettes" aria-label="Select an option">
+                        <div class="row mt-2">
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="None"
+                                    name="E_Cigarettes"></mat-radio-button>
+                                <label>None</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="1 to 9 per day"
+                                    name="E_Cigarettes"></mat-radio-button>
+                                <label>1 to 9 per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="10 to 19 per day"
+                                    name="E_Cigarettes"></mat-radio-button>
+                                <label>10 to 19 per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="20 to 29 per day"
+                                    name="E_Cigarettes"></mat-radio-button>
+                                <label>20 to 29 per day</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button  value="30 or more per day"
+                                    name="E_Cigarettes"></mat-radio-button>
+                                <label>30 or more per day</label>
+                            </div>
+                            
+                        </div>
+                    </mat-radio-group>
+                    </div>
+                </div>
+                <hr>
+    
+                <!--  Question 3-->
+                <div data-aos-duration="700" data-aos="fade-right">
+                    <h2>3-<span class="p_2"> Are you an alcohol Consumer </span>?</h2>
+                    <div class="row mt-3">
+                        
+                        <div class="col-md-6 col-sm-12">
+                            <mat-radio-button (change)="AlcoholStatus($event.value)" value="true" name="Alcohol"></mat-radio-button>
+                            <label>Yes</label>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <mat-radio-button (change)="AlcoholStatus($event.value)" value="false" name="Alcohol"></mat-radio-button>
+                            <label>No</label>
+                        </div>
+              
+                    </div>
+                </div>
+                <div>
+                    <!--  Question 3.1-->
+                    <div style="display: none; background-color: rgba(0, 0, 0, 0.15);border-radius: 0.3rem;" id="SpecifyAlcohol" class="mt-3 p-2">
+                        <h2>3.1-<span class="p_2"> Specify : </span> .</h2>
+                        <mat-radio-group formControlName="alcohol" aria-label="Select an option">
+                        <div class="row mt-2" >
+                            <div class="col-md-12 col-sm-12">
+                                <mat-radio-button value="No" name="alcoholMuch"></mat-radio-button>
+                                <label>None</label>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <mat-radio-button value="One/Day" name="alcoholMuch"></mat-radio-button>
+                                <label>One/Day</label>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <mat-radio-button value="2 /Day" name="alcoholMuch"></mat-radio-button>
+                                <label>2 /Day</label>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <mat-radio-button value="3+ /Day" name="alcoholMuch"></mat-radio-button>
+                                <label>3+ /Day</label>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <mat-radio-button value="Once per week" name="alcoholMuch"></mat-radio-button>
+                                <label>Once per week</label>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                                <mat-radio-button value="Once per mont" name="alcoholMuch"></mat-radio-button>
+                                <label>Once per month</label>
+                            </div>
+                            
+                        </div>
+                    </mat-radio-group>
+                    </div>
+                </div>
+                <hr>
+    
+                    <!-- Question 4 -->
+                <div>
+                    <h2>4-<span class="p_2">In the last 10 years, have you suffered/been suffering from</span> :</h2>
+                    <div class="row mt-4 mx-2 px-2 " style="background-color: rgba(0, 0, 0, 0.15); border-radius: 0.5rem;">
+                        <!-- a -->
+                        <h2>A-<span class="p_3"> Psychatric Problem ?</span></h2>
+                        <mat-radio-group formControlName="psychatric" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Psychatric"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Psychatric"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                        </mat-radio-group>
+                        <hr>
+                        <!-- b -->
+                        <h2>B-<span class="p_3"> Cancer ?</span></h2>
+                        <mat-radio-group formControlName="cancer" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="No" name="Cancer"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="Fully cured" name="Cancer"></mat-radio-button>
+                                <label>Fully cured</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button value="Currently being treated" name="Cancer"></mat-radio-button>
+                                <label>Currently being treated</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        <!-- c -->
+                        <h2>C-<span class="p_3"> Diabetes ?</span></h2>
+                        <mat-radio-group formControlName="diabetes" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Diabetes"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Diabetes"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        <!-- d -->
+                        <h2>D-<span class="p_3"> Heart Disease ?</span></h2>
+                        <mat-radio-group formControlName="heart" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="HeartDisease"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="HeartDisease"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- e -->
+                        <h2>E-<span class="p_3"> Circulatory Disease (i.e Hypertension)</span></h2>
+                        <mat-radio-group formControlName="circulatory" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="CirculatoryDisease"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="CirculatoryDisease"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- f -->
+                        <h2>F-<span class="p_3"> Respiratory Disease </span></h2>
+                        <mat-radio-group formControlName="respiratory" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Respiratory"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Respiratory"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- G -->
+                        <h2>G-<span class="p_3"> Digestive Disease  </span></h2>
+                        <mat-radio-group formControlName="digestive" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Digestive"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Digestive"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- H -->
+                        <h2>H-<span class="p_3"> Elevated Lipids (Cholesterol, Triglycerides, HDL) </span></h2>
+                        <mat-radio-group formControlName="elavated" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Elevated"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Elevated"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- I -->
+                        <h2>I-<span class="p_3"> Nervous Disease </span></h2>
+                        <mat-radio-group formControlName="nervous" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Nervous"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Nervous"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- J -->
+                        <h2>J-<span class="p_3"> Musculoskeletal disorders</span></h2>
+                        <mat-radio-group formControlName="musc" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Musculoskeletal"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Musculoskeletal"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- K -->
+                        <h2>K-<span class="p_3"> Do you suffer from any Illness other than mentioned above ?</span></h2>
+                        <mat-radio-group formControlName="other" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="otherThan"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="otherThan"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                    </div>
+                </div>
+                <hr>
+    
+                    <!-- Question 5 -->
+                <div>
+                    <h2>5-<span class="p_2"> Do you Engage in any of the following activities</span> ?</h2>
+                    <div class="row mt-4 mx-2 px-2" style="background-color: #d9d9d9; border-radius: 0.5rem;">
+                        <!-- a -->
+                        <h2>A-<span class="p_3"> Scuba Diving :</span></h2>
+                        <mat-radio-group formControlName="scuba" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="ScubaDiving"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="ScubaDiving"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        <!-- b -->
+                        <h2>B-<span class="p_3"> Base Jumping :</span></h2>
+                        <mat-radio-group formControlName="jump" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="BaseJumping"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="BaseJumping"></mat-radio-button>
+                                <label>yes</label>
+                            </div>
+    
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        <!-- c -->
+                        <h2>C-<span class="p_3"> Hang Gliding :</span></h2>
+                        <mat-radio-group formControlName="gliding" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="HangGliding"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="HangGliding"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        <!-- d -->
+                        <h2>D-<span class="p_3"> Race Car Driving :</span></h2>
+                        <mat-radio-group formControlName="race" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="RaceCarDriving"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="RaceCarDriving"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- e -->
+                        <h2>E-<span class="p_3"> Flying a Plane :</span></h2>
+                        <mat-radio-group formControlName="fly" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="FlyingaPlane"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="FlyingaPlane"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- f -->
+                        <h2>F-<span class="p_3"> Horseback Riding :</span></h2>
+                        <mat-radio-group formControlName="horse" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="HorsebackRiding"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="HorsebackRiding"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- G -->
+                        <h2>G-<span class="p_3"> Bungee Jumping :</span></h2>
+                        <mat-radio-group formControlName="bungee" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="BungeeJumping"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="BungeeJumping"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- H -->
+                        <h2>H-<span class="p_3"> Parasailing :</span></h2>
+                        <mat-radio-group formControlName="paraselling" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="Parasailing"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="Parasailing"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+                        <!-- I -->
+                        <h2>I-<span class="p_3"> Off-Roading :</span></h2>
+                        <mat-radio-group formControlName="roading" aria-label="Select an option">
+                        <div class="row mt-3" >
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="false" name="OffRoading"></mat-radio-button>
+                                <label>No</label>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <mat-radio-button [value]="true" name="OffRoading"></mat-radio-button>
+                                <label>Yes</label>
+                            </div>
+                        </div>
+                    </mat-radio-group>
+                        <hr>
+                        
+    
+                    </div>
+                </div>
+                <hr>
+    
+                <div class="row d-flex justify-content-start">
+                    <button (click)="SubmitProposalForm()" [disabled]="this.proposalForm.status=='INVALID'||this.isClicked" class="w-25 my-4 mx-5 fs-3" mat-raised-button color="primary"><span *ngIf="this.isClicked">Waiting <i class="fa-solid fa-spinner fa-spin"></i></span> <span *ngIf="!this.isClicked">Save <i class="fa-regular fa-floppy-disk"></i></span></button>
+                </div>
+    
+    
+            </div>
+        </form>
+    </div>
+</div>

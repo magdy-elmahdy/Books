@@ -1,0 +1,68 @@
+<div id="Dashboard">
+    <div class="container">
+        <div class="d-flex justify-content-start mx-5 mt-5">
+            <p class="font_Coloered3 text-center" data-aos-duration="900" data-aos="zoom-in"> {{'UserInfo.AdminDashboard' |translate}}</p>
+        </div> 
+        <div class="outerBorder shadow_5 py-5">
+            <div class="row">
+                <!-- Qoutaions -->
+                <div class="col-lg-4 col-md-6"data-aos-duration="900" data-aos="fade-right">
+                    <div class="small-box bg_yellow" [dir]="'dir'| translate">
+                        <div class="inner">
+                            <h2>Qoutaions</h2>
+                            <p class="fs-5">{{'UserInfo.Qoutaions' |translate}}</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/Reports" class="text-center">View Qoutaions <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-down">
+                    <div class="small-box bg_green">
+                        <div class="inner">
+                            <h2>Schools</h2>
+                            <p class="fs-5">{{AllSchools?.length}} Schools</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-school-flag"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/AllScools" class="text-center">Manage Schools <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-left">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h2>Parents</h2>
+                            <p class="fs-5">{{AllParents?.length}} Parent</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/AllParents" class="text-center">View Parents <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-2" data-aos-duration="900" data-aos="fade-up">
+                    <div class="small-box bg_red">
+                        <div class="inner">
+                            <h2>Kids</h2>
+                            <p class="fs-5">{{AllKids?.length}} Kid</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-children"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/AllKids" class="text-center">View Kids <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
