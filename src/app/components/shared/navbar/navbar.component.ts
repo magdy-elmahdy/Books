@@ -20,10 +20,10 @@ export class NavbarComponent {
   handleSideBar(){
     this.SideStatus.emit()
   }
-  logOut(){
+  async logOut(){
     localStorage.removeItem('BooksToken')
-    this._Router.navigate(['/login']);
-    window.location.reload()
+    await this._Router.navigate(['/login']);
+    await window.location.reload()
   }
 
 
