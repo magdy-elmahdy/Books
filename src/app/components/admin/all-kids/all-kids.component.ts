@@ -137,6 +137,5 @@ export class AllKidsComponent implements OnInit{
     this.getAllKids();
   }
   ngOnInit(): void {
-    this.getllSchools()
   }
 }

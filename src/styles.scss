@@ -43,20 +43,6 @@ html, body{ height: 100%;
     letter-spacing: 1px;
 }
 
-.font_Coloered2{
-    color: #d97706;
-    font-size: 1.3rem;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: 1.5px;
-}
-.font_Coloered3{
-    color: #4758B8;
-    font-size: 1.7rem;
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: 1px;
-}
 .btn_colored{
     background-color: #d97706;
     color:#fff;
@@ -211,4 +197,24 @@ html{
 // Font button Material
 .mdc-button .mdc-button__label {
     font-size: 1rem!important;
+}
+///////////////////// New
+.bg_blue{
+    background-color: #463785;
+}
+.bg_2{
+    background-color:#F6F6E9 ;
+}
+.fo_1{
+    color: #FFF;
+    font-weight: bold;
+}
+.CusInput{
+    padding: 1rem 1rem;
+    border-radius: 5rem;
+}
+.btn{
+    // padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    font-weight: bold;
 }

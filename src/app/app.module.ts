@@ -25,10 +25,6 @@ import { LoginComponent } from './components/shared/login/login.component';
 import { SignUpComponent } from './components/admin/sign-up/sign-up.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { FatherFormComponent } from './components/User/father-form/father-form.component';
-import { ProposalFormComponent } from './components/User/proposal-form/proposal-form.component';
-import { KidsFormComponent } from './components/User/kids-form/kids-form.component';
-import { QuotationDetailsComponent } from './components/User/quotation-details/quotation-details.component';
 import { AddSchoolComponent } from './components/admin/add-school/add-school.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { AllSchoolsComponent } from './components/admin/all-schools/all-schools.component';
@@ -42,8 +38,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import {Ng2TelInputModule} from 'ng2-tel-input';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
-import { RejectionComponent } from './components/User/rejection/rejection.component';
 import { QuotaionsOfFileComponent } from './components/admin/quotaions-of-file/quotaions-of-file.component';
+import { StudentsComponent } from './components/students/students.component';
+import { BooksComponent } from './components/books/books.component';
+import { LibraryLoanComponent } from './components/library-loan/library-loan.component';
 
 export function playerFactory(){
   return player;
@@ -58,18 +56,16 @@ export function playerFactory(){
     LoginComponent,
     SignUpComponent,
     SearchPipe,
-    FatherFormComponent,
-    ProposalFormComponent,
-    KidsFormComponent,
-    QuotationDetailsComponent,
     AddSchoolComponent,
     DashboardComponent,
     AllSchoolsComponent,
     ReportsComponent,
     AllParentsComponent,
     AllKidsComponent,
-    RejectionComponent,
     QuotaionsOfFileComponent,
+    StudentsComponent,
+    BooksComponent,
+    LibraryLoanComponent,
   ],
   imports: [
     BrowserModule,

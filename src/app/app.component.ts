@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as AOS from 'aos';
+import { AuthService } from './services/auth.service';
 declare var $:any
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit{
   opened=false;
   allTreaties:any;
   loader:boolean=true;
-  constructor(){
+  constructor(public _AuthService:AuthService){
     AOS.init();
   }
   handleSideBar(){

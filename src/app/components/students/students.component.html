@@ -1,0 +1,49 @@
+<div id="All_Kids">
+    <div class="container">
+        <div class="d-flex justify-content-between mx-5 pt-2">
+            <div class="d-flex">
+                <p class=" text-center my-4 fw-bold fs-4 " style="color:#463785;">All Students</p>
+            </div>
+            <input class="form-control w-25 ml-auto mt-3" style="height: 3rem;" [(ngModel)]='term' placeholder="Search With Student Name .." />
+        </div>  
+        <div class="outerBorder outerItem shadow_5 py-53">
+       
+                <table class="table table-striped text-center">
+                    <thead class="tableHead">
+                        <th class="py-2"></th>
+                        <th class="py-2">Full Name</th>
+                        <th class="py-2">Email</th>
+                        <th class="py-2">Id</th>
+                    </thead>
+                    <tbody *ngIf="this.ErrorMsg==''">
+                        
+                        <tr *ngFor="let item of AllStudent|search:term|paginate:{
+                            itemsPerPage:tableSize,
+                            currentPage:page,
+                            totalItems:count}; let i=index">
+                            <td style="max-width: 1rem!important;">
+                                <img src="../../../assets/imgs/Aya2.jpg" class="w-25" style="border-radius: 50%;">
+                            </td>
+                            <td class="align-middle">{{item.fullName}}</td>
+                            <td class="align-middle">{{item.Email}}</td>
+                            <td class="align-middle">{{item.id}}</td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+                <div class="d-flex justify-content-end mt-4">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+                    <select style="border: solid 2px #4758B8;" (change)="onTableSizeChange($event)" class="tableSize rounded-pill px-1">
+                      <option *ngFor=" let size of tableSizes">{{size}}</option>
+                    </select>
+                </div>
+                <div id="loading" *ngIf="loading">
+                    <app-spinner class="d-flex justify-content-center m-auto"></app-spinner>
+                </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -11,29 +11,18 @@
   background-color: rgba(0,0,0,0.08);
   // color: #fff;
 }
-.head:after{
-    content: '';
-    position: absolute;
-    height: 1px;
-    width: 80%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background-color:rgba(0 , 0 , 0 , 0.1) ;
-}
 
   .accordion-header button{
     font-size: 1.1rem!important;
     font-weight: 400;
-    padding: 10px 0;
+    padding: 15px 0;
     border: none;
     transition: 0.2s;
     text-align: start;
     color: #555;
       // font-family: -apple-system;
     font-size: 1rem;
-    background-color: #FFF;
+    background-color: #F6F6E9;
   }
   
 .accordion-body{
@@ -106,7 +95,9 @@ i{
 .active{
     font-size: 1.1rem!important;
     font-weight: 500;
-    background-color: #4758B8!important ;
+    background-color: #463785!important ;
     color: #FFF!important;
-    border-radius: 7px;
+}
+.accordion-item{
+  background-color:#F6F6E9!important ;
 }

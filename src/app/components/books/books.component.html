@@ -1,0 +1,60 @@
+<div id="All_Kids">
+    <div class="container">
+        <div class="d-flex justify-content-between mx-5 pt-2">
+            <div class="d-flex">
+                <p class=" text-center my-4 fw-bold fs-4 " style="color:#463785;">All Books</p>
+            </div>
+            <input class="form-control w-25 ml-auto mt-3" style="height: 3rem;" [(ngModel)]='term' placeholder="Search With Book Name .." />
+        </div>  
+        <div class="outerBorder outerItem shadow_5 py-53">
+       
+                <table class="table table-striped text-center">
+                    <thead class="tableHead">
+                        <th class="py-2"></th>
+                        <th class="py-2">Title</th>
+                        <th class="py-2">Author</th>
+                        <th class="py-2">Publisher</th>
+                        <th class="py-2">Publication <br> date</th>
+                        <th class="py-2">ISBN</th>
+                        <th class="py-2">Availability</th>
+                        <th class="py-2">Settings</th>
+                    </thead>
+                    <tbody *ngIf="this.ErrorMsg==''">
+                        
+                        <tr *ngFor="let item of AllKids|search:term|paginate:{
+                            itemsPerPage:tableSize,
+                            currentPage:page,
+                            totalItems:count}; let i=index">
+                            <td style="max-width: 1rem;">
+                                <img src="../../../assets/imgs/book.jpg" class="w-75">
+                            </td>
+                            <td class="align-middle">{{item.title}}</td>
+                            <td class="align-middle">{{item.Author}}</td>
+                            <td class="align-middle">{{item.Publisher}}</td>
+                            <td class="align-middle">{{item.Publication}}</td>
+                            <td class="align-middle">{{item.ISBN}}</td>
+                            <td class="align-middle text-success">{{item.available}}</td>
+                            <td style="vertical-align: middle;">
+                                <i  data-bs-toggle="modal" data-bs-target="#editKid" class="fa-solid fa-pencil fs-5 px-3 py-2 mx-1" style="color:#3F51B5;"></i>
+                                <i  class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+    
+                </table>
+                <div class="d-flex justify-content-end mt-4">
+                    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                    </pagination-controls>
+                    <select style="border: solid 2px #4758B8;" (change)="onTableSizeChange($event)" class="tableSize rounded-pill px-1">
+                      <option *ngFor=" let size of tableSizes">{{size}}</option>
+                    </select>
+                </div>
+                <div id="loading" *ngIf="loading">
+                    <app-spinner class="d-flex justify-content-center m-auto"></app-spinner>
+                </div>
+
+        </div>
+
+    </div>
+
+</div>

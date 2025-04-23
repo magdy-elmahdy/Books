@@ -21,8 +21,9 @@ export class NavbarComponent {
     this.SideStatus.emit()
   }
   logOut(){
-    localStorage.removeItem('SchoolsToken')
+    localStorage.removeItem('BooksToken')
     this._Router.navigate(['/login']);
+    window.location.reload()
   }
 
 

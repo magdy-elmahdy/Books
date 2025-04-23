@@ -14,18 +14,19 @@ export class AuthService {
   _JwtHelperService =new JwtHelperService()
   constructor(private _HttpClient:HttpClient) { }
 
-  LoginForm(body:any){
-    return this._HttpClient.post(this.baseURL+'Auth/Login',body,this.ConfigPost)
+  logInForm(Model:any){
+    // this.user = this.getUser(localStorage.getItem('TOKEN')!) 
+    return this._HttpClient.post('http://97.74.82.75:9586/api/Users/Login' , Model );
   }
 
 
   // IsLoggedIn(){
-  //   return !!localStorage.getItem('SchoolsToken')
+  //   return !!localStorage.getItem('BooksToken')
   // }
 
 
   isLoggedIn(){
-    var token = localStorage.getItem("SchoolsToken");
+    var token = localStorage.getItem("BooksToken");
     return !this._JwtHelperService.isTokenExpired(token);
   }
 }

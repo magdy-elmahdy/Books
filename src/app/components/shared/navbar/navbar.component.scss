@@ -1,11 +1,4 @@
- /// nav Bar
- .navbar {
-    // min-height:7.5vh;
-    // box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px!important;
-    // position: relative;
-    // z-index:2;
-  }
-  
+ 
   nav ul li a{
     padding: 0.7rem 0;
     font-weight: 500;
@@ -62,13 +55,13 @@
   transform: translate(-3px,3px) rotate(-45deg)
 }
 #menu.is-active span{
-  background-color:#D97706;
+  background-color:#F5B938;
 }
 #menu span{
   display: block;
   width:3rem;
   height:0.33rem;
-  background-color:#A5A5A5;
+  background-color:#FFF;
   border-radius: 6px;
   transform-origin: 0 0;
   transition: 0.3s;
@@ -77,14 +70,14 @@
 }
 
 .btn_test{
-  border-radius: 2rem;
+  border-radius: 1.8rem;
   // background-color: #d97706;
-  border:solid 2px #FF4081 ;
-
-  // color: #fff;
+  border:solid 3px #fff ;
+  font-weight: bold!important;
+  color: #fff;
 }
 .btn_test:hover{
-  background-color: #FF4081;
+  background-color: #F99D1C;
   color:#fff
 }
 .text_nav{

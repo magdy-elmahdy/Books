@@ -1,6 +1,42 @@
-    <!----------------------------- Start Login ----------------->
-<section id="login" class=" d-flex align-items-center" data-aos-duration='1000' data-aos="fade-right">
-    <div class="container">
+<!----------------------------- Start Login ----------------->
+<section id="login" class="d-flex">
+
+
+  <div class="imgBox d-flex justify-content-center align-items-center w-50 bg_2">
+    <img src="../../../../assets/imgs/cairo.png" class="w-50">
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center w-50 bg_blue">
+    <div class="w-75">
+      <div class="d-flex justify-content-center">
+        <img class="text-center" src="../../../../assets/imgs/Person.png" alt="">
+      </div>
+      <form class="py-4" [formGroup]="loginForm">
+        <div class="form_group">
+          <label class="fo_1 px-4 pb-2">Email</label>
+          <input formControlName="userName" type="text" class="form-control CusInput" placeholder="Email@ensia.edu.dz">
+        </div>
+        <div class="form_group mt-4">
+          <label class="fo_1 px-4 pb-2">Password</label>
+          <input formControlName="password" type="password" class="form-control CusInput" placeholder="*********">
+        </div>
+        <div class="buttons text-center mt-5">
+          <p class="fo_1 pb-1" style="cursor: pointer;">Sign Up</p>
+          <button [disabled]="this.loginForm.status=='INVALID'||this.isClicked" (click)="submitLoginForm()" class="btn btn-warning w-25 py-2">
+            
+              <span *ngIf="!isClicked">Login In</span>
+              <span *ngIf="isClicked" class="h5"><i class="fa-solid fa-fan fa-spin"></i></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- <div class="container">
       <div class="inner p-5 shadow_5" >
         <div class="row">
             <p class="font_Coloered3 text-center">Log in with us</p>
@@ -46,7 +82,7 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
-  <!----------------------------- End login ----------------->
+    </div> -->
+</section>
+
+<!----------------------------- End login ----------------->

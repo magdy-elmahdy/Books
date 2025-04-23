@@ -1,56 +1,51 @@
-<div style="border: solid 1px rgba(0 , 0 , 0 , 0.2);border-bottom: none;min-height: 92.4vh;">
+<div style="border-bottom: none;min-height: 100vh;" class="bg_2">
+    <!-- Logo -->
+     <div class="text-center">
+        <img src="../../../../assets/imgs/cairo.png" class="w-50 my-2">
+     </div>
+    <!-- Person -->
+     <div class="d-flex my-3 align-items-center">
+        <img src="../../../../assets/imgs/Aya2.jpg" class="mx-3" style="border-radius: 50%;width: 30%;">
+        <div class="px-1 mt-2">
+            <p class="fo_1 text-black">Aya Essam</p>
+            <p class="text-muted">Librarian</p>
+        </div>
+        <i class="fa-solid fa-chevron-down mx-1 text-muted" style="cursor: pointer;"></i>
+     </div>
     <!-- Dashboard -->
-    <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample">
+    <!-- <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample"> -->
+    <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
-            <h2 class="accordion-header head px-2">
-                <button routerLink="/AdminDashboard" routerLinkActive="active" class="w-100 collapsed px-2 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
-                    <i class="fa fa-grip-horizontal"></i> Admin Dashboard
+            <h2 class="accordion-header">
+                <button routerLink="/AdminDashboard" routerLinkActive="active" class="w-100 collapsed px-2" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
+                    <i class="fa fa-grip-horizontal"></i> Dashboard
                 </button>
             </h2>
         </div>
     </div>
-    <!--  Add School -->
-    <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
-            <h2 class="accordion-header head px-2">
-                <button routerLink="/AddSchool" routerLinkActive="active" class="w-100 collapsed px-2 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
-                    <i class="fa-solid fa-graduation-cap"></i> Add School
+            <h2 class="accordion-header">
+                <button routerLink="/LibraryLoan" routerLinkActive="active" class="w-100 collapsed px-2" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
+                    <i class="fa-solid fa-repeat"></i> Library Loan
                 </button>
             </h2>
         </div>
     </div>
-    <!--  All Schools -->
-    <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
-            <h2 class="accordion-header head px-2">
-                <button routerLink="/AllScools" routerLinkActive="active" class="w-100 collapsed px-2 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
-                    <i class="fa-solid fa-school-flag"></i> All Schools
+            <h2 class="accordion-header">
+                <button routerLink="/Books" routerLinkActive="active" class="w-100 collapsed px-2" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
+                    <i class="fa-solid fa-book"></i> Books
                 </button>
             </h2>
         </div>
     </div>
-
-    
-    
-
-
-    <!--All  Parents -->
-    <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
-            <h2 class="accordion-header head px-2">
-                <button routerLink="/AllParents" routerLinkActive="active" class="w-100 collapsed px-2 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
-                    <i class="fa-solid fa-person"></i>  All Parents
-                </button>
-            </h2>
-        </div>
-    </div>
-
-    <!--  Kids -->
-    <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header head px-2">
-                <button routerLink="/AllKids" routerLinkActive="active" class="w-100 collapsed px-2 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
-                    <i class="fa-solid fa-children"></i>  All Kids
+            <h2 class="accordion-header">
+                <button routerLink="/Students" routerLinkActive="active" class="w-100 collapsed px-2" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
+                    <i class="fa-solid fa-user-graduate"></i> Students
                 </button>
             </h2>
         </div>
@@ -58,40 +53,5 @@
 
     
 
-
-    <!-- Test 1 -->
-    <!-- <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header head">
-                <button class="w-100 collapsed px-2" type="button" data-bs-toggle="collapse" data-bs-target="#H_3">
-                    <i class="fa fa-compress"></i> Offers
-                </button>
-            </h2>
-            <div id="H_3" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body">
-                    <div class="my-1"routerLink="/AllPolices" routerLinkActive="active"><i class="fa fa-file-alt"></i> Polices
-                    </div>
-                    <div class="my-1"routerLink="/"><i class="fa fa-clock"></i> Attendance
-                    </div>
-                    <div class="my-1"routerLink="/"><i class="fa fa-plane"></i> Travel</div>
-                    <div class="my-1"routerLink="/"><i class="fa fa-align-center"></i>
-                        Overtime</div>
-                    <div class="my-1"routerLink="/"><i class="fa fa-money-check"></i> Loans
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!--  Reports -->
-    <div *ngIf="this._AuthService.isLoggedIn()" class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header head px-2">
-                <button routerLink="/Reports" routerLinkActive="active" class="w-100 collapsed px-2 my-1" type="button" data-bs-toggle="collapse" data-bs-target="#H_2">
-                    <i class="fa fa-file-alt"></i> Reports
-                </button>
-            </h2>
-        </div>
-    </div>
 
 </div>

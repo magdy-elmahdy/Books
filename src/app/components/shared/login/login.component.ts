@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit{
   errorEsist:boolean =false;
   isClicked:boolean =false;
   
-  constructor(private _AuthService:AuthService ,private _Router:Router){
+  constructor(private _AuthService:AuthService ,private _Router:Router , private _ToastrService:ToastrService){
     if(this._AuthService.isLoggedIn()){
       this._Router.navigate(['/AdminDashboard'])
     }
@@ -27,22 +27,21 @@ export class LoginComponent implements OnInit{
 
   // _JwtHelperService =new JwtHelperService()
   // token:any = localStorage.getItem("TOKEN");
-    loginForm:FormGroup =new FormGroup({
-      'email':new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(22)]),
-      'password':new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(22)])
-    });
+  loginForm:FormGroup =new FormGroup({
+    'userName':new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(22)]),
+    'password':new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(22)])
+  });
 
     redirectTo(uri: string) {
       this._Router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
       this._Router.navigate([uri]));
    }
    async submitLoginForm(){
-      this._AuthService.LoginForm(this.loginForm.value).subscribe(async (res:any)=>{
-      await  localStorage.setItem('SchoolsToken',res.token)///////////////// Token
+      this.isClicked =true
+      this._AuthService.logInForm(this.loginForm.value).subscribe(async (res:any)=>{
+      await  localStorage.setItem('BooksToken',res.token)///////////////// Token
       await  this._Router.navigate(['/AdminDashboard'])
-      await  window.location.reload()
-      // await  Swal.fire('Good Job!',res.username+' Logged in Successfully','success');
-        console.log(res);
+      this._ToastrService.success('Logged in Successfully')
       },error=>{
         console.log(error);
         
