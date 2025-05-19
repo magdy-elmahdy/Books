@@ -1,11 +1,32 @@
 <div id="All_Kids">
-    <div class="container">
-        <div class="d-flex justify-content-between mx-5 pt-2">
-            <div class="d-flex">
-                <p class=" text-center my-4 fw-bold fs-4 " style="color:#463785;">All Students</p>
+    <div class="container-fluid">
+        <div class="row mx-5 mt-3">
+            <div class="col-md-9 d-flex">
+                <div class="form_group mx-1">
+                    <label class="fo_1 px-4 pb-2 text-black">Full Name</label>
+                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.Admed Ali">
+                </div>
+                <div class="form_group mx-1">
+                    <label class="fo_1 px-4 pb-2 text-black">Email</label>
+                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.aya@gmail.com">
+                </div>
+                <div class="form_group mx-1">
+                    <label class="fo_1 px-4 pb-2 text-black">ID</label>
+                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.145454">
+                </div>
             </div>
-            <input class="form-control w-25 ml-auto mt-3" style="height: 3rem;" [(ngModel)]='term' placeholder="Search With Student Name .." />
-        </div>  
+            <div class="col-md-3 d-flex px-2 mt-3">
+                <div class="d-flex align-items-center mx-1">
+                    <i class="fa-solid fa-magnifying-glass fs-5 mainIcon bg_light"></i>
+                </div>
+                <div class="d-flex align-items-center mx-1">
+                    <i data-bs-toggle="modal" data-bs-target="#AddModal" class="fa-solid fa-circle-plus fs-5 mainIcon bg_light"></i>
+                </div>
+                <div class="d-flex align-items-center mx-1">
+                    <i (click)="toggleDelete()" class="fa-solid fa-trash fs-5 mainIcon bg_light"></i>
+                </div>
+            </div>
+        </div> 
         <div class="outerBorder outerItem shadow_5 py-53">
        
                 <table class="table table-striped text-center">
@@ -14,6 +35,8 @@
                         <th class="py-2">Full Name</th>
                         <th class="py-2">Email</th>
                         <th class="py-2">Id</th>
+                        <th class="py-2 Delete" style="display: none;">Delete</th>
+
                     </thead>
                     <tbody *ngIf="this.ErrorMsg==''">
                         
@@ -27,6 +50,9 @@
                             <td class="align-middle">{{item.fullName}}</td>
                             <td class="align-middle">{{item.Email}}</td>
                             <td class="align-middle">{{item.id}}</td>
+                            <td class="Delete" style="vertical-align: middle;display: none;">
+                                <i data-bs-toggle="modal" data-bs-target="#DeleteModal" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
+                            </td>
                         </tr>
                     </tbody>
     
@@ -46,4 +72,71 @@
 
     </div>
 
+</div>
+
+
+
+<!--------------------------------------- / Add Modal  --------------------------->
+<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="networkCoding" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ShowDetailsModal">Add New Student</h1>
+            </div>
+            <div class="container">
+                <div class="row py-3">
+                    <div class="col-12">
+                        <div class="form_group mx-1">
+                            <label class="fo_1 px-4 pb-2 text-black">Full Name</label>
+                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s Full Name">
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="form_group mx-1">
+                            <label class="fo_1 px-4 pb-2 text-black">Email</label>
+                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s Email">
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <div class="form_group mx-1">
+                            <label class="fo_1 px-4 pb-2 text-black">Id</label>
+                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s Id">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-3 px-3 d-flex justify-content-between">
+                <button mat-raised-button class="mat-blue" mat-raised-button color="primary">
+                    <span *ngIf="!this.isCliked">Save <i class="fa-solid fa-check"></i></span>
+                    <span *ngIf="this.isCliked"><i class="fa-solid fa-fan fa-spin"></i></span>
+                </button>
+                <button  id="close" type="button" mat-raised-button
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------------------------- / Delete Modal  --------------------------->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="networkCoding" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ShowDetailsModal">Delete Item</h1>
+            </div>
+            <div class="container">
+                <h2 class="my-5 text-center">
+                    Are you sure you want to delete <br>
+                    This Student ?
+                </h2>
+            </div>
+            <div class="modal-footer py-3 px-3 d-flex justify-content-between">
+                <button mat-raised-button class="mat-blue">
+                    <span *ngIf="!this.isCliked">Yes <i class="fa-solid fa-check"></i></span>
+                    <span *ngIf="this.isCliked"><i class="fa-solid fa-fan fa-spin"></i></span>
+                </button>
+                <button  id="close" type="button" mat-raised-button
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

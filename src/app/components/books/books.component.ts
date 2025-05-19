@@ -20,9 +20,12 @@ export class BooksComponent {
   tableSizes = [5, 8, 10, 15, 20];
   term: any;
   loading: boolean = false
+  isCliked: boolean = false
   ErrorMsg: any = ''
   constructor( private _ActivatedRoute: ActivatedRoute) {}
-
+  toggleDelete(){
+     $('.Delete').toggle(500)
+  }
   //Pagination Methods
   onTableDataChange(event: any) {
     this.page = event;
@@ -33,5 +36,6 @@ export class BooksComponent {
   }
   ngOnInit(): void {
   }
+
 
 }

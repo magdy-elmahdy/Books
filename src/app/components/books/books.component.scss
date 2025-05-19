@@ -4,3 +4,13 @@
 .modal{
     --bs-modal-width: 75%;
 }
+.mainIcon{
+    border-radius: 50%;
+    padding: 1rem 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.mainIcon:hover{
+    background-color:#F5B938;
+    color: #FFF;
+}

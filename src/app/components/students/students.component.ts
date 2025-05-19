@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $: any
 
 @Component({
   selector: 'app-students',
@@ -18,6 +19,7 @@ AllStudent: any = [
   tableSizes = [5, 8, 10, 15, 20];
   term: any;
   loading: boolean = false
+  isCliked: boolean = false
   ErrorMsg: any = ''
   constructor() {}
 
@@ -28,6 +30,9 @@ AllStudent: any = [
   onTableSizeChange(event: any) {
     this.tableSize = event.target.value;
     this.page = 1;
+  }
+  toggleDelete(){
+     $('.Delete').toggle(500)
   }
   ngOnInit(): void {
   }
