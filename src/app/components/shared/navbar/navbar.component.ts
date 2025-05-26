@@ -22,6 +22,7 @@ export class NavbarComponent {
   }
   async logOut(){
     localStorage.removeItem('BooksToken')
+    localStorage.removeItem('BooksRole')
     await this._Router.navigate(['/login']);
     await window.location.reload()
   }

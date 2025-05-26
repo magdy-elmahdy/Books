@@ -38,8 +38,8 @@ export class DashboardComponent implements OnInit{
 
 
   ngOnInit(){
-    this.getllSchools()
-    this.getAllKids()
-    this.getAllParents()
+    // this.getllSchools()
+    // this.getAllKids()
+    // this.getAllParents()
   }
 }

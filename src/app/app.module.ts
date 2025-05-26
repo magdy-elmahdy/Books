@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-// import { JwtModule } from "@auth0/angular-jwt";
 import {LottieModule} from 'ngx-lottie';
 import { NgxPaginationModule } from 'ngx-pagination';
 import player from 'lottie-web';
@@ -24,13 +23,7 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
 import { LoginComponent } from './components/shared/login/login.component';
 import { SignUpComponent } from './components/admin/sign-up/sign-up.component';
 import { SearchPipe } from './pipes/search.pipe';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { AddSchoolComponent } from './components/admin/add-school/add-school.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
-import { AllSchoolsComponent } from './components/admin/all-schools/all-schools.component';
-import { ReportsComponent } from './components/admin/reports/reports.component';
-import { AllParentsComponent } from './components/admin/all-parents/all-parents.component';
-import { AllKidsComponent } from './components/admin/all-kids/all-kids.component';
 import {MatIconModule} from '@angular/material/icon'
 
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -38,10 +31,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import {Ng2TelInputModule} from 'ng2-tel-input';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
-import { QuotaionsOfFileComponent } from './components/admin/quotaions-of-file/quotaions-of-file.component';
-import { StudentsComponent } from './components/students/students.component';
-import { BooksComponent } from './components/books/books.component';
-import { LibraryLoanComponent } from './components/library-loan/library-loan.component';
+import { StudentsComponent } from './components/admin/students/students.component';
+import { BooksComponent } from './components/admin/books/books.component';
+import { LibraryLoanComponent } from './components/admin/library-loan/library-loan.component';
+import { StuBooksComponent } from './components/student/stu-books/stu-books.component';
 
 export function playerFactory(){
   return player;
@@ -56,16 +49,11 @@ export function playerFactory(){
     LoginComponent,
     SignUpComponent,
     SearchPipe,
-    AddSchoolComponent,
     DashboardComponent,
-    AllSchoolsComponent,
-    ReportsComponent,
-    AllParentsComponent,
-    AllKidsComponent,
-    QuotaionsOfFileComponent,
     StudentsComponent,
     BooksComponent,
     LibraryLoanComponent,
+    StuBooksComponent,
   ],
   imports: [
     BrowserModule,

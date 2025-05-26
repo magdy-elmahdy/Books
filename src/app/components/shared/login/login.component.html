@@ -14,17 +14,17 @@
       <form class="py-4" [formGroup]="loginForm">
         <div class="form_group">
           <label class="fo_1 px-4 pb-2">Email</label>
-          <input formControlName="userName" type="text" class="form-control CusInput" placeholder="Email@ensia.edu.dz">
+          <input formControlName="username" type="text" class="form-control CusInput" placeholder="Email@ensia.edu.dz">
         </div>
         <div class="form_group mt-4">
           <label class="fo_1 px-4 pb-2">Password</label>
           <input formControlName="password" type="password" class="form-control CusInput" placeholder="*********">
         </div>
         <div class="buttons text-center mt-5">
-          <p class="fo_1 pb-1" style="cursor: pointer;">Sign Up</p>
+          <!-- <p class="fo_1 pb-1" style="cursor: pointer;">Sign Up</p> -->
           <button [disabled]="this.loginForm.status=='INVALID'||this.isClicked" (click)="submitLoginForm()" class="btn btn-warning w-25 py-2">
             
-              <span *ngIf="!isClicked">Login In</span>
+              <span *ngIf="!isClicked">Login</span>
               <span *ngIf="isClicked" class="h5"><i class="fa-solid fa-fan fa-spin"></i></span>
           </button>
         </div>

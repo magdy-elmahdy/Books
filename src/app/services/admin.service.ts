@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AdminService {
-  // baseURL:any='https://245d-197-36-192-67.ngrok-free.app/api/';
   baseURL:any='http://97.74.82.75:5678/';
   configGet:any ={headers: new HttpHeaders().set("ngrok-skip-browser-warning", "true")}
   ConfigPost:any = { headers: new HttpHeaders().set('Content-Type', 'application/json') };

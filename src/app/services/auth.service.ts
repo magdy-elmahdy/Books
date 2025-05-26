@@ -6,8 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
-  // baseURL:any='https://245d-197-36-192-67.ngrok-free.app/api/';
-  baseURL:any='http://97.74.82.75:5678/';
+  baseURL:any='http://51.20.126.142:4000/';
 
   configGet:any ={headers: new HttpHeaders().set("ngrok-skip-browser-warning", "true")}
   ConfigPost:any = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
@@ -19,7 +18,9 @@ export class AuthService {
     return this._HttpClient.post('http://97.74.82.75:9586/api/Users/Login' , Model );
   }
 
-
+  MainLogin(Model:any){
+    return this._HttpClient.post(this.baseURL+'users/login' , Model,);
+  }
   // IsLoggedIn(){
   //   return !!localStorage.getItem('BooksToken')
   // }

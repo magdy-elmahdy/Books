@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit{
   // _JwtHelperService =new JwtHelperService()
   // token:any = localStorage.getItem("TOKEN");
   loginForm:FormGroup =new FormGroup({
-    'userName':new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(22)]),
+    'username':new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(22)]),
     'password':new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(22)])
   });
 
@@ -38,11 +38,14 @@ export class LoginComponent implements OnInit{
    }
    async submitLoginForm(){
       this.isClicked =true
-      this._AuthService.logInForm(this.loginForm.value).subscribe(async (res:any)=>{
+      this._AuthService.MainLogin(this.loginForm.value).subscribe(async (res:any)=>{
       await  localStorage.setItem('BooksToken',res.token)///////////////// Token
+      await  localStorage.setItem('BooksRole',res.role)///////////////// Role
       await  this._Router.navigate(['/AdminDashboard'])
       this._ToastrService.success('Logged in Successfully')
+      window.location.reload()
       },error=>{
+        this.isClicked =false
         console.log(error);
         
         Swal.fire({
@@ -52,10 +55,7 @@ export class LoginComponent implements OnInit{
         })
       })
     }
-    
-login:AnimationOptions={
-  path:'assets/imgs/login.json'
-}
+
 
 ngOnInit(): void {
 }

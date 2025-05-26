@@ -8,24 +8,32 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class HasRoleGuard implements CanActivate {
-  isAurher:any
+  sAurher:any
   constructor(private _Router:Router){}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      const loggedInUser = localStorage.getItem('BooksRole');
 
-    const isAutherized =JSON.parse(localStorage.getItem("userType")!).roles.includes(route.data[0])
-                      ||JSON.parse(localStorage.getItem("userType")!).roles.includes(route.data[1])
-                      ||JSON.parse(localStorage.getItem("userType")!).roles.includes(route.data[2])
-    if(!isAutherized){
-      Swal.fire({
-        icon: 'error',
-        title: '403',
-        text: 'You Are Not Allowed To Access That Details',
-      })
-      
+  // Check if the user is logged in and has a role
+  if (loggedInUser) {
+    if (
+      loggedInUser === route.data[0]
+    ) {
+      return true;
     }
-    return isAutherized
+  }
+
+  // If no matching role, show an alert and navigate to Forbidden
+  // Swal.fire({
+  //   icon: 'error',
+  //   title: '403',
+  //   text: 'You Are Not Allowed To Access That Details',
+  // });
+  // this._Router.navigate(['/Forbidden']);
+  this._Router.navigate(['/login'])
+  return false;
+    
   }
   
 }

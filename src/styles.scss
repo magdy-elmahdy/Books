@@ -221,3 +221,12 @@ html{
 .bg_light{
     background-color: #f1f1e9
 }
+
+.tabeeb_Btn{
+    color: #FFF!important;
+    background-color: #463785!important;
+}
+.tabeeb_Btn:disabled,.tabeeb_Btn:disabled:hover{
+    background-color: rgba(0, 0, 0, 0.2)!important; 
+    cursor:not-allowed!important;
+}
