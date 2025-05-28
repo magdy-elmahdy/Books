@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin.service';
 import { StudentService } from 'src/app/services/student.service';
 import Swal from 'sweetalert2';
 declare var $: any
@@ -31,7 +32,7 @@ AllStudent: any = [
   loading: boolean = false
   isClicked: boolean = false
   ErrorMsg: any = ''
-  constructor(private _StudentService:StudentService, private _ToastrService:ToastrService) {}
+  constructor(private _StudentService:StudentService, private _ToastrService:ToastrService , private _AdminService:AdminService) {}
 
 
 
@@ -72,7 +73,7 @@ AllStudent: any = [
   }
   getAllStudents(){
     this.loading = true
-    this._StudentService.getAllStudents().subscribe((res:any)=>{
+    this._AdminService.getAllStudents().subscribe((res:any)=>{
       this.loading = false
       this.AllStudent = res;
       this.loading = false;

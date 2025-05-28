@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 declare var $: any;
 import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin.service';
 @Component({
   selector: 'app-library-loan',
   templateUrl: './library-loan.component.html',
@@ -15,7 +16,7 @@ isClicked:boolean= false
   brokerCustomers:any
   BrokerIdVal:any =''
   TotalMony:number = 0
-  AllPortfolio:any[]=[
+  AllItems:any[]=[
     {student:'Omar Ali', order:'TN Novel' , date:'26-05-2025'},
     {student:'Esaam Ahmed', order:'Taha Hussin Book' , date:'01-04-2025'},
     {student:'Sara Hesham', order:'Agatha Kristi' , date:'15-04-2025'},
@@ -24,7 +25,7 @@ isClicked:boolean= false
   ]
   PortflioCollections:any
  
-  constructor(private _ToastrService:ToastrService, private _Router:Router){}
+  constructor(private _ToastrService:ToastrService, private _Router:Router,private _AdminService:AdminService){}
 
 
   SearchForm:FormGroup = new FormGroup({
@@ -35,22 +36,17 @@ isClicked:boolean= false
     'Decision':new FormControl('pending'),
   })
 
-  selectedFile:any = ''
-  uploadPaymnetFile(event: any){
-    this.selectedFile = event.target.files[0] ?? null;
-    event.target.value=''
-  }
   ArrTest:any[]=[];
   getApproveDecision(id:any,target:any){
 
-    let Exist= this.ArrTest.find(item=>item.id ==id)
+    let Exist= this.ArrTest.find(item=>item.request_id ==id)
     
     if(Exist==undefined){
       if(target.value==''){
       }else{
         let Model= {
-          id:id,
-          isApproved :JSON.parse(target.value)
+          request_id:id,
+          status:target.value
         }
         this.ArrTest.push(Model)
       }
@@ -60,8 +56,8 @@ isClicked:boolean= false
         this.ArrTest.splice(Index,1)
       }else{
         let Model= {
-          id:id,
-          isApproved :JSON.parse(target.value)
+          request_id:id,
+          status:target.value
         }
         let Index = this.ArrTest.indexOf(Exist)
         this.ArrTest.splice(Index,1)
@@ -69,9 +65,9 @@ isClicked:boolean= false
       }
     }
     console.log(this.ArrTest);
-    if(target.value == 'true'){
+    if(target.value == '1'){
       target.style.backgroundColor = '#E2F2E9';
-    }else if(target.value == 'false'){
+    }else if(target.value == '0'){
       target.style.backgroundColor = '#FBECEC';
     }else{
       target.style.backgroundColor = '#FFF';
@@ -81,26 +77,34 @@ isClicked:boolean= false
     }else{
       $('#Save').show(300)
     }
+    console.log(this.ArrTest);
+    
   }
 
   ///////////////////  Sumbit Portfolios //////////////
 SumbitPortfolios(){
-  
-  
-}
-getPortflioCollections(collections:any){
-  this.PortflioCollections = collections
-  console.log(this.PortflioCollections);
-  $(".overlayPortflioCollections").fadeIn(300)
-  $(".closePortflioCollections").animate({right: '0px'});
-}
-closePortflioCollections(){
-  $(".overlayPortflioCollections").fadeOut(300)
-  $(".closePortflioCollections").animate({right: '-30%'});
-}
+  this._AdminService.BorrowDecision(this.ArrTest).subscribe((res:any)=>{
+      this.isClicked = false;
 
+      this.getAllPendingRequests();
+        this._ToastrService.success('Done Successfully')
+    }, error => {
+      this.isClicked = false;
+  }) 
+  
+}
+  getAllPendingRequests(){
+    this.loading = true
+    this._AdminService.getPendingRequests().subscribe((res:any)=>{
+      this.loading = false
+      this.AllItems = res.records;
+      this.loading = false;
+      console.log(this.AllItems); 
+    }, error => {
+      this.loading = false
+  })
+  }
   ngOnInit() {
-
-
+    this.getAllPendingRequests()
   }
 }

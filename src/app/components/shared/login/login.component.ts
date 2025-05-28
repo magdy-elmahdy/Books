@@ -39,8 +39,10 @@ export class LoginComponent implements OnInit{
    async submitLoginForm(){
       this.isClicked =true
       this._AuthService.MainLogin(this.loginForm.value).subscribe(async (res:any)=>{
+        console.log(res);
       await  localStorage.setItem('BooksToken',res.token)///////////////// Token
       await  localStorage.setItem('BooksRole',res.role)///////////////// Role
+      await  localStorage.setItem('BooksId',res.studentid)///////////////// Role
       await  this._Router.navigate(['/AdminDashboard'])
       this._ToastrService.success('Logged in Successfully')
       window.location.reload()

@@ -20,7 +20,8 @@
                     <i class="fa-solid fa-magnifying-glass fs-5 mainIcon bg_light"></i>
                 </div>
                 <div class="d-flex align-items-center mx-1">
-                    <i data-bs-toggle="modal" data-bs-target="#AddModal" class="fa-solid fa-circle-plus fs-5 mainIcon bg_light"></i>
+                    <i data-bs-toggle="modal" data-bs-target="#AddModal"
+                        class="fa-solid fa-circle-plus fs-5 mainIcon bg_light"></i>
                 </div>
                 <div class="d-flex align-items-center mx-1">
                     <i (click)="toggleDelete()" class="fa-solid fa-trash fs-5 mainIcon bg_light"></i>
@@ -37,12 +38,13 @@
                     <th class="py-2">Publisher</th>
                     <th class="py-2">Publication <br> date</th>
                     <th class="py-2">ISBN</th>
+                    <th class="py-2">Quantity</th>
                     <th class="py-2">Availability</th>
                     <th class="py-2 Delete" style="display: none;">Delete</th>
                 </thead>
                 <tbody *ngIf="this.ErrorMsg==''">
 
-                    <tr *ngFor="let item of AllKids|search:term|paginate:{
+                    <tr *ngFor="let item of AllItems|search:term|paginate:{
                             itemsPerPage:tableSize,
                             currentPage:page,
                             totalItems:count}; let i=index">
@@ -50,13 +52,19 @@
                             <img src="../../../assets/imgs/book.jpg" class="w-75">
                         </td>
                         <td class="align-middle">{{item.title}}</td>
-                        <td class="align-middle">{{item.Author}}</td>
-                        <td class="align-middle">{{item.Publisher}}</td>
-                        <td class="align-middle">{{item.Publication}}</td>
-                        <td class="align-middle">{{item.ISBN}}</td>
-                        <td class="align-middle text-success">{{item.available}}</td>
+                        <td class="align-middle">{{item.author}}</td>
+                        <td class="align-middle">{{item.publisher}}</td>
+                        <td class="align-middle">{{item.published_date|date:'dd/MM/YYYY'}}</td>
+                        <td class="align-middle">{{item.isbn}}</td>
+                        <td class="align-middle">{{item.quantity}}</td>
+                        <td class="align-middle text-success">
+                            <span *ngIf="item.availability==true"><i
+                                    class="fa-solid fa-check text-success fs-4"></i></span>
+                            <span *ngIf="item.availability==false"><i class="fa-solid fa-x text-danger fs-4"></i></span>
+                        </td>
                         <td class="Delete" style="vertical-align: middle;display: none;">
-                            <i data-bs-toggle="modal" data-bs-target="#DeleteModal" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
+                            <i data-bs-toggle="modal" data-bs-target="#DeleteModal"
+                                class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -88,61 +96,77 @@
                 <h1 class="modal-title fs-5" id="ShowDetailsModal">Add New Item</h1>
             </div>
             <div class="container">
-                <div class="row py-3">
-                    <div class="col-12">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">Title</label>
-                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s title">
+                <form [formGroup]="Form">
+                    <div class="row py-3">
+                        <div class="col-12">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Title</label>
+                                <input formControlName="title" type="text" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s title">
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Author</label>
+                                <input formControlName="author" type="text" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s Author">
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Publisher</label>
+                                <input formControlName="publisher" type="text" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s Publisher">
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Barcode</label>
+                                <input formControlName="barcode" type="text" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s Barcode">
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Quantity</label>
+                                <input formControlName="quantity" type="number" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s Quantity">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">ISBN</label>
+                                <input formControlName="isbn" type="text" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s ISBN">
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Availability</label>
+                                <select formControlName="availability" class="form-select CusInput bg_light">
+                                    <option [value]="true">Yes</option>
+                                    <option [value]="false">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <div class="form_group mx-1">
+                                <label class="fo_1 px-4 pb-2 text-black">Publication date</label>
+                                <input formControlName="published_date" type="date" class="form-control CusInput bg_light"
+                                    placeholder="Enter the item’s Publication date">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6 mt-2">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">Author</label>
-                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s Author">
-                        </div>
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">Publisher</label>
-                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s Publisher">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">Barcode</label>
-                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s Barcode">
-                        </div>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">ISBN</label>
-                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the item’s ISBN">
-                        </div>
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">Subject</label>
-                            <select class="form-select CusInput bg_light">
-                                <option value="1">Algebra</option>
-                                <option value="2">Drama</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6 mt-2">
-                        <div class="form_group mx-1">
-                            <label class="fo_1 px-4 pb-2 text-black">Publication date</label>
-                            <input type="date" class="form-control CusInput bg_light" placeholder="Enter the item’s Publication date">
-                        </div>
-                    </div>
-                </div>
+                </form>
+
             </div>
             <div class="modal-footer py-3 px-3 d-flex justify-content-between">
-                <button mat-raised-button class="mat-blue" mat-raised-button color="primary">
-                    <span *ngIf="!this.isCliked">Save <i class="fa-solid fa-check"></i></span>
-                    <span *ngIf="this.isCliked"><i class="fa-solid fa-fan fa-spin"></i></span>
+                <button (click)="SubmitAddBook()" [disabled]="isClicked ||Form.status=='INVALID'" mat-raised-button
+                    class="mat-blue" mat-raised-button color="primary">
+                    <span *ngIf="!this.isClicked">Save <i class="fa-solid fa-check"></i></span>
+                    <span *ngIf="this.isClicked"><i class="fa-solid fa-fan fa-spin"></i></span>
                 </button>
-                <button  id="close" type="button" mat-raised-button
-                    data-bs-dismiss="modal">Close</button>
+                <button id="close" type="button" mat-raised-button data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -162,11 +186,10 @@
             </div>
             <div class="modal-footer py-3 px-3 d-flex justify-content-between">
                 <button mat-raised-button class="mat-blue">
-                    <span *ngIf="!this.isCliked">Yes <i class="fa-solid fa-check"></i></span>
-                    <span *ngIf="this.isCliked"><i class="fa-solid fa-fan fa-spin"></i></span>
+                    <span *ngIf="!this.isClicked">Yes <i class="fa-solid fa-check"></i></span>
+                    <span *ngIf="this.isClicked"><i class="fa-solid fa-fan fa-spin"></i></span>
                 </button>
-                <button  id="close" type="button" mat-raised-button
-                    data-bs-dismiss="modal">Close</button>
+                <button id="close" type="button" mat-raised-button data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

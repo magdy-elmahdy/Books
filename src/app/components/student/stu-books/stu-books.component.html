@@ -34,9 +34,9 @@
                     <th class="py-2">Availability</th>
                     <th class="py-2">Borrow</th>
                 </thead>
-                <tbody *ngIf="this.ErrorMsg==''">
+                <tbody >
 
-                    <tr *ngFor="let item of AllKids|search:term|paginate:{
+                    <tr *ngFor="let item of AllItems|search:term|paginate:{
                             itemsPerPage:tableSize,
                             currentPage:page,
                             totalItems:count}; let i=index">
@@ -52,10 +52,11 @@
                             <span *ngIf="item.available=='available'" class="text-success">Available</span>
                             <span *ngIf="item.available=='not Available'" class="text-danger">Not Available</span>
                         </td>
-                        <td class="Delete" style="vertical-align: middle">
-                            <button *ngIf="item.available=='available'" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#BorrowModal">Borrow</button>
-                            <span *ngIf="item.available=='not Available'">-</span>
-                            <!-- <i data-bs-toggle="modal" data-bs-target="#DeleteModal" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i> -->
+                        <td style="vertical-align: middle">
+                            <button (click)="selectedItem=item" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#BorrowModal">
+                                Borrow
+                            </button>
+                            <!-- <span *ngIf="item.available=='not Available'">-</span> -->
                         </td>
                     </tr>
                 </tbody>
@@ -93,11 +94,11 @@
                 </h2>
             </div>
             <div class="modal-footer py-3 px-3 d-flex justify-content-between">
-                <button mat-raised-button class="mat-blue">
+                <button (click)="BorrowRequest()" [disabled]="isCliked" mat-raised-button color="primary" class="mat-blue">
                     <span *ngIf="!this.isCliked">Yes <i class="fa-solid fa-check"></i></span>
                     <span *ngIf="this.isCliked"><i class="fa-solid fa-fan fa-spin"></i></span>
                 </button>
-                <button  id="close" type="button" mat-raised-button
+                <button id="close" type="button" mat-raised-button
                     data-bs-dismiss="modal">Close</button>
             </div>
         </div>
