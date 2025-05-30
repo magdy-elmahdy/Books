@@ -19,9 +19,19 @@ export class StudentService {
     return this._HttpClient.get(this.baseURL+'books',this.configGet)
   }
   
+  // Get All Avilable books
+  getAllAvilableBooks(){
+    return this._HttpClient.get(this.baseURL+'books/available/'+localStorage.getItem('BooksId'),this.configGet)
+  }
+   
   // Borrow Request
   BorrowRequest(Body:any){
     return this._HttpClient.post(this.baseURL+'borrowed_books/borrow-request',Body)
+  }
+   
+  // Get Requested
+  getAllpendingBooks(){
+    return this._HttpClient.get(this.baseURL+'borrowed_books/'+localStorage.getItem('BooksId'),this.configGet)
   }
   
 }

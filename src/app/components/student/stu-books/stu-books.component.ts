@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 import { StudentService } from 'src/app/services/student.service';
 declare var $: any
 
@@ -24,7 +25,10 @@ AllItems: any = [
   loading: boolean = false;
   isCliked: boolean = false;
   selectedItem: any = ''
-  constructor( private _ActivatedRoute: ActivatedRoute ,private _StudentService:StudentService, private _ToastrService:ToastrService) {}
+  CurrentDate:Date = new Date()
+  constructor( private _ActivatedRoute: ActivatedRoute ,private _StudentService:StudentService, private _ToastrService:ToastrService,
+    public _AuthService:AuthService
+  ) {}
   toggleDelete(){
      $('.Delete').toggle(500)
   }
@@ -41,23 +45,24 @@ AllItems: any = [
     this.isCliked = true
     let Model ={
       student_id: localStorage.getItem('BooksId'),
-      isbn: this.selectedItem.isbn
+      isbn: this.selectedItem.isbn,
+      request_start_date:this.CurrentDate
     }
     console.log(Model);
     
     this._StudentService.BorrowRequest(Model).subscribe((res:any)=>{
       this.isCliked = false;
 
-      this.getAllBooks();
+      this.getAllAvilableBooks();
         $("#BorrowModal").modal('toggle')
         this._ToastrService.success('Requested Successfully')
     }, error => {
       this.isCliked = false;
   }) 
   }
-  getAllBooks(){
+  getAllAvilableBooks(){
     this.loading = true
-    this._StudentService.getAllBooks().subscribe((res:any)=>{
+    this._StudentService.getAllAvilableBooks().subscribe((res:any)=>{
       this.loading = false
       this.AllItems = res;
       this.loading = false;
@@ -67,6 +72,6 @@ AllItems: any = [
   })
   }
   ngOnInit(): void {
-    this.getAllBooks();
+    this.getAllAvilableBooks();
   }
 }

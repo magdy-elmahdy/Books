@@ -4,7 +4,8 @@
             <p class="text-center my-4 fw-bold fs-4 " style="color:#463785;" data-aos-duration="900" data-aos="zoom-in"> Dashboard</p>
         </div> 
         <div class="outerBorder shadow_5 py-5">
-            <div class="row">
+            <!----------------- Admin  ------------->
+            <div class="row" *ngIf="Role=='admin'">
                 <!-- Qoutaions -->
                 <div class="col-lg-4 col-md-6"data-aos-duration="900" data-aos="fade-right">
                     <div class="small-box bg_yellow" [dir]="'dir'| translate">
@@ -38,7 +39,54 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h2>Library Loan</h2>
-                            <p class="fs-5">{{AllParents?.length}} Loan</p>
+                            <p class="fs-5"> Loan</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-repeat"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/LibraryLoan" class="text-center">View Library Loan <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!----------------- student  ------------->
+            <div class="row" *ngIf="Role=='student'">
+                <!-- Qoutaions -->
+                <div class="col-lg-4 col-md-6"data-aos-duration="900" data-aos="fade-right">
+                    <div class="small-box bg_yellow" [dir]="'dir'| translate">
+                        <div class="inner">
+                            <h2>Pending Books</h2>
+                            <p class="fs-5">{{AllStudentPending?.length}} Book</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/Students" class="text-center">View items <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-down">
+                    <div class="small-box bg_green">
+                        <div class="inner">
+                            <h2>Books</h2>
+                            <p class="fs-5">20 Book</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa-solid fa-book"></i>
+                        </div>
+                        <div class="m-auto box-footer">
+                            <a routerLink="/Books" class="text-center">Manage Books <i class="fa-solid fa-arrow-right"></i></a> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-left">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h2>Library Loan</h2>
+                            <p class="fs-5"> Loan</p>
                         </div>
                         <div class="icon">
                             <i class="fa-solid fa-repeat"></i>

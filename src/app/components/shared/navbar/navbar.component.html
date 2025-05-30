@@ -10,7 +10,11 @@
           <span></span>
         </div>
       </div>
-      <p class="h2 fw-bold text-white" style="margin-bottom: 0!important;">Students</p>
+      <p class="h2 fw-bold text-white" style="margin-bottom: 0!important;">
+        
+        <span *ngIf="Role=='student'">Students</span>
+        <span *ngIf="Role=='admin'">Admin</span>
+      </p>
 
 
     </div>

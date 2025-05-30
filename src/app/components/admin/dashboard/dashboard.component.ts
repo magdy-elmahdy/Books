@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +11,9 @@ import { AdminService } from 'src/app/services/admin.service';
 export class DashboardComponent implements OnInit{
   AllSchools:any
   AllKids:any
-  AllParents:any
-  constructor(private _AdminService:AdminService){}
+  AllStudentPending:any
+  Role:any=localStorage.getItem('BooksRole')!
+  constructor(private _AdminService:AdminService,public _AuthService:AuthService, private _StudentService:StudentService){}
 
     // Get All Schools
   getllSchools(){
@@ -29,17 +32,25 @@ export class DashboardComponent implements OnInit{
       console.log(error);
     })
   }
-      // Get All Parents
-  getAllParents(){
-    this._AdminService.getAllParents().subscribe(data=>{
-      this.AllParents=data
+
+  /////////////////////////// Student ///////////////////////
+      // Get Requested
+  getStudentRequested(){
+    this._StudentService.getAllpendingBooks().subscribe(data=>{
+      this.AllStudentPending=data
+      console.log(data);
+      
     })
   }
 
 
   ngOnInit(){
+    if(this.Role=='student'){
+      this.getStudentRequested()
+    }else if(this.Role=='admin'){
     // this.getllSchools()
     // this.getAllKids()
     // this.getAllParents()
   }
+}
 }

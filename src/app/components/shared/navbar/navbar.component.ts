@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent {
 
   @Output() SideStatus=new EventEmitter()
+  Role:any=localStorage.getItem('BooksRole')!
   constructor(private _Router:Router, public _AuthService:AuthService, private _TranslateService:TranslateService){
     _TranslateService.addLangs(['en', 'ar'])
     _TranslateService.setDefaultLang('en')

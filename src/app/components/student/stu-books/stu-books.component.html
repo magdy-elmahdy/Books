@@ -31,7 +31,8 @@
                     <th class="py-2">Publisher</th>
                     <th class="py-2">Publication <br> date</th>
                     <th class="py-2">ISBN</th>
-                    <th class="py-2">Availability</th>
+                    <th class="py-2">Barcode</th>
+                    <th class="py-2">Quantity</th>
                     <th class="py-2">Borrow</th>
                 </thead>
                 <tbody >
@@ -44,14 +45,12 @@
                             <img src="../../../assets/imgs/book.jpg" class="w-75">
                         </td>
                         <td class="align-middle">{{item.title}}</td>
-                        <td class="align-middle">{{item.Author}}</td>
-                        <td class="align-middle">{{item.Publisher}}</td>
-                        <td class="align-middle">{{item.Publication}}</td>
-                        <td class="align-middle">{{item.ISBN}}</td>
-                        <td class="align-middle">
-                            <span *ngIf="item.available=='available'" class="text-success">Available</span>
-                            <span *ngIf="item.available=='not Available'" class="text-danger">Not Available</span>
-                        </td>
+                        <td class="align-middle">{{item.author}}</td>
+                        <td class="align-middle">{{item.publisher}}</td>
+                        <td class="align-middle">{{item.published_date|date:'dd/MM/YYYY'}}</td>
+                        <td class="align-middle">{{item.isbn}}</td>
+                        <td class="align-middle">{{item.barcode}}</td>
+                        <td class="align-middle">{{item.quantity}}</td>
                         <td style="vertical-align: middle">
                             <button (click)="selectedItem=item" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#BorrowModal">
                                 Borrow
