@@ -53,18 +53,18 @@ AllItems: any = [
     this._StudentService.BorrowRequest(Model).subscribe((res:any)=>{
       this.isCliked = false;
 
-      this.getAllAvilableBooks();
+      this.getAllStudentBooksWithItsStatus();
         $("#BorrowModal").modal('toggle')
         this._ToastrService.success('Requested Successfully')
     }, error => {
       this.isCliked = false;
   }) 
   }
-  getAllAvilableBooks(){
+  getAllStudentBooksWithItsStatus(){
     this.loading = true
-    this._StudentService.getAllAvilableBooks().subscribe((res:any)=>{
+    this._StudentService.Avilablebooks().subscribe((res:any)=>{
       this.loading = false
-      this.AllItems = res;
+      this.AllItems = res
       this.loading = false;
       console.log(this.AllItems); 
     }, error => {
@@ -72,6 +72,6 @@ AllItems: any = [
   })
   }
   ngOnInit(): void {
-    this.getAllAvilableBooks();
+    this.getAllStudentBooksWithItsStatus();
   }
 }

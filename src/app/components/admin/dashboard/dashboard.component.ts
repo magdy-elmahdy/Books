@@ -9,48 +9,88 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit{
-  AllSchools:any
-  AllKids:any
+  AdminPending:any
+  AdminComfirmid:any
+  AdminRejected:any
+  
+  StudentPending:any
+  StudentComfirmid:any
+  StudentRejected:any
+
   AllStudentPending:any
+  AllBooksItems:any
+  AllStudent:any
+  isLoading1:boolean=false;
+  isLoading2:boolean=false;
+  isLoading3:boolean=false;
+  isLoading4:boolean=false;
   Role:any=localStorage.getItem('BooksRole')!
+  StudentId:any=localStorage.getItem('BooksId')!
   constructor(private _AdminService:AdminService,public _AuthService:AuthService, private _StudentService:StudentService){}
 
-    // Get All Schools
-  getllSchools(){
-    this._AdminService.getAllSchools().subscribe(data=>{
-      this.AllSchools=data
+
+  /////////////////////////// Admin ///////////////////////
+      //  Pending
+  getAdminPending(){
+    this.isLoading1=true;
+    this._AdminService.getAdminPending().subscribe((data:any)=>{
+      this.isLoading1=false;
+      this.AdminPending=data.records
+      console.log(data);
     },error=>{
-      console.log(error);
+      this.isLoading1=false;
     })
   }
-
-      // Get All Kids
-  getAllKids(){
-    this._AdminService.getAllKids().subscribe(data=>{
-      this.AllKids=data;
+      //  Approved
+  getAdminApproved(){
+      this.isLoading2=true;
+    this._AdminService.getAdminApproved().subscribe((data:any)=>{
+      this.isLoading2=false;
+      this.AdminComfirmid=data.records
+      console.log(data);
     },error=>{
-      console.log(error);
+      this.isLoading2=false;
+    })
+  }
+      //  Rejected
+  getAdminRejected(){
+    this.isLoading3=true
+    this._AdminService.getAdminRejected().subscribe((data:any)=>{
+      this.isLoading3=false;
+      this.AdminRejected=data.records
+      console.log(data);
+    },error=>{
+      this.isLoading3=false;
     })
   }
 
   /////////////////////////// Student ///////////////////////
       // Get Requested
-  getStudentRequested(){
-    this._StudentService.getAllpendingBooks().subscribe(data=>{
+  getAllStudentBooksWithItsStatus(){
+    this._StudentService.getAllStudentBooksWithItsStatus().subscribe((data:any)=>{
       this.AllStudentPending=data
-      console.log(data);
-      
+      this.StudentRejected = data.filter((item:any)=>item.status==0)
+      this.StudentComfirmid = data.filter((item:any)=>item.status==1)
+      this.StudentPending = data.filter((item:any)=>item.status==2)
     })
   }
 
+getAllStudents(){
+    this._AdminService.getAllStudents().subscribe((res:any)=>{
+      this.AllStudent = res;
+      console.log(this.AllStudent); 
+    }, error => {
 
+  })
+}
   ngOnInit(){
     if(this.Role=='student'){
-      this.getStudentRequested()
+      this.getAllStudentBooksWithItsStatus()
     }else if(this.Role=='admin'){
-    // this.getllSchools()
-    // this.getAllKids()
-    // this.getAllParents()
+      this.getAdminPending()
+      this.getAdminApproved()
+      this.getAllStudents()
+      this.getAdminRejected()
   }
 }
 }

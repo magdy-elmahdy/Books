@@ -29,9 +29,15 @@ export class StudentService {
     return this._HttpClient.post(this.baseURL+'borrowed_books/borrow-request',Body)
   }
    
-  // Get Requested
-  getAllpendingBooks(){
+  // Get AllStudentBooksWithItsStatus(){
+  getAllStudentBooksWithItsStatus(){
     return this._HttpClient.get(this.baseURL+'borrowed_books/'+localStorage.getItem('BooksId'),this.configGet)
   }
+   
+  // Get AllStudentBooksWithItsStatus(){
+  Avilablebooks(){
+    return this._HttpClient.get(this.baseURL+'books/available/'+localStorage.getItem('BooksId'),this.configGet)
+  }
+
   
 }

@@ -13,10 +13,11 @@ declare var $: any
 })
 export class StudentsComponent {
   Form:FormGroup = new FormGroup({
-    'fullName':new FormControl('',[Validators.required]),
+    'fullname':new FormControl('',[Validators.required]),
     'username':new FormControl('',[Validators.required]),
     'email':new FormControl('',[Validators.required]),
     'password':new FormControl('',[Validators.required]),
+    'studentid':new FormControl('',[Validators.required]),
   });
 AllStudent: any = [
     {fullName:'Aya Essam',Email:'aya12@gmail.com', id:'37657485'},
@@ -55,7 +56,7 @@ AllStudent: any = [
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: error.error,
+          text: error.message,
         })
       })
     }

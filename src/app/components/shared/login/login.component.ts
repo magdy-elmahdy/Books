@@ -48,12 +48,10 @@ export class LoginComponent implements OnInit{
       window.location.reload()
       },error=>{
         this.isClicked =false
-        console.log(error);
-        
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: error.error,
+          text: error.error.message,
         })
       })
     }

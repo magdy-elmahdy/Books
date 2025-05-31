@@ -13,6 +13,7 @@
             </div>
             <table class="table text-center table-responsive">
                 <thead class="py-5 main_color" style="background-color: #F2F2F2 !important;">
+                    <th class="py-3">Book Title</th>
                     <th class="py-3">Student</th>
                     <th class="py-3">title</th>
                     <th class="py-3">isbn</th>
@@ -22,10 +23,11 @@
                 <tbody>
 
                     <tr *ngFor="let Policy of AllItems;let index= index">
+                        <td class="align-middle">{{Policy.title}}</td>
                         <td class="align-middle">{{Policy.fullname}}</td>
                         <td class="align-middle">{{Policy.title}}</td>
                         <td class="align-middle">{{Policy.isbn}}</td>
-                        <td class="align-middle">{{Policy.date}}</td>
+                        <td class="align-middle">{{Policy.request_start_date|date:'dd/MM/YYYY'}}</td>
                         <td class="align-middle d-flex justify-content-center">
                             <select (change)="getApproveDecision(Policy.id , $event.target)" class="form-select w-50">
                                 <option style="background-color: #FFF;" value="" selected>Null</option>

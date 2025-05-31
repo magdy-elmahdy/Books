@@ -95,7 +95,7 @@ SumbitPortfolios(){
 }
   getAllPendingRequests(){
     this.loading = true
-    this._AdminService.getPendingRequests().subscribe((res:any)=>{
+    this._AdminService.getAdminPending().subscribe((res:any)=>{
       this.loading = false
       this.AllItems = res.records;
       this.loading = false;

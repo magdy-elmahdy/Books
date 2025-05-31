@@ -48,10 +48,10 @@
                             <td style="max-width: 1rem!important;">
                                 <img src="../../../assets/imgs/Aya2.jpg" class="w-25" style="border-radius: 50%;">
                             </td>
-                            <td class="align-middle">test</td>
+                            <td class="align-middle">{{item.fullname}}</td>
                             <td class="align-middle">{{item.username}}</td>
                             <td class="align-middle">{{item.email}}</td>
-                            <td class="align-middle">test</td>
+                            <td class="align-middle">{{item.studentid}}</td>
                             <td class="Delete" style="vertical-align: middle;display: none;">
                                 <i data-bs-toggle="modal" data-bs-target="#DeleteModal" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
                             </td>
@@ -91,7 +91,7 @@
                     <div class="col-12">
                         <div class="form_group mx-1">
                             <label class="fo_1 px-4 pb-2 text-black">Full Name</label>
-                            <input formControlName="fullName" type="text" class="form-control CusInput bg_light" placeholder="Enter the Student’s Full Name">
+                            <input formControlName="fullname" type="text" class="form-control CusInput bg_light" placeholder="Enter the Student’s Full Name">
                         </div>
                     </div>
                     <div class="col-6 mt-2">
@@ -115,7 +115,7 @@
                     <div class="col-6 mt-2">
                         <div class="form_group mx-1">
                             <label class="fo_1 px-4 pb-2 text-black">Id</label>
-                            <input type="text" class="form-control CusInput bg_light" placeholder="Enter the Student’s Id">
+                            <input formControlName="studentid" type="text" class="form-control CusInput bg_light" placeholder="Enter the Student’s Id">
                         </div>
                     </div>
                 </div>
