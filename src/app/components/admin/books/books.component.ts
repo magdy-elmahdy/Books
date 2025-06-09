@@ -40,7 +40,7 @@ export class BooksComponent {
       'barcode':new FormControl('',[Validators.required]),
       'published_date':new FormControl('',[Validators.required]),
       'publisher':new FormControl('',[Validators.required]),
-      'quantity':new FormControl('',[Validators.required]),
+      'quantity':new FormControl(''),
       'availability':new FormControl('',[Validators.required]),
   });
   OpenEditModel(){
@@ -105,7 +105,7 @@ export class BooksComponent {
         })
       }
   SubmitEditBook(){
-    this._AdminService.EditBook(this.SelectedItem.book_id ,this.Form.value).subscribe((res:any)=>{
+    this._AdminService.EditBook(this.SelectedItem.isbn ,this.Form.value).subscribe((res:any)=>{
           console.log(res);
           this.getAllBooks();
           $("#AddModal").modal('toggle');
@@ -130,7 +130,7 @@ export class BooksComponent {
         this.isClicked =true
         console.log(this.SelectedItem);
         
-        this._AdminService.DeleteBook(this.SelectedItem?.book_id).subscribe((res:any)=>{
+        this._AdminService.DeleteBook(this.SelectedItem?.isbn).subscribe((res:any)=>{
           console.log(res);
           this.getAllBooks();
           $("#DeleteModal").modal('toggle')

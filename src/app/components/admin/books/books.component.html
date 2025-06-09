@@ -105,42 +105,42 @@
             <div class="container">
                 <form [formGroup]="Form">
                     <div class="row py-3">
-                        <div class="col-12">
+                        <div class="col-12" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">Title</label>
                                 <input formControlName="title" type="text" class="form-control CusInput bg_light"
                                     placeholder="Enter the item’s title">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-6 mt-2" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">Author</label>
                                 <input formControlName="author" type="text" class="form-control CusInput bg_light"
                                     placeholder="Enter the item’s Author">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-6 mt-2" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">Publisher</label>
                                 <input formControlName="publisher" type="text" class="form-control CusInput bg_light"
                                     placeholder="Enter the item’s Publisher">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-6 mt-2" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">Barcode</label>
                                 <input formControlName="barcode" type="text" class="form-control CusInput bg_light"
                                     placeholder="Enter the item’s Barcode">
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-6 mt-2" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">Quantity</label>
                                 <input formControlName="quantity" type="number" class="form-control CusInput bg_light"
                                     placeholder="Enter the item’s Quantity">
                             </div>
                         </div>
-                        <div class="col-12 mt-2">
+                        <div class="col-12 mt-2" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">ISBN</label>
                                 <input formControlName="isbn" type="text" class="form-control CusInput bg_light"
@@ -156,7 +156,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-6 mt-2">
+                        <div class="col-6 mt-2" *ngIf="SelectedItem==''">
                             <div class="form_group mx-1">
                                 <label class="fo_1 px-4 pb-2 text-black">Publication date</label>
                                 <input formControlName="published_date" type="date" class="form-control CusInput bg_light"
