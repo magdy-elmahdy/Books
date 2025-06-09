@@ -71,6 +71,8 @@ export class DashboardComponent implements OnInit{
       this.AllStudentPending=data
       this.StudentRejected = data.filter((item:any)=>item.status==0)
       this.StudentComfirmid = data.filter((item:any)=>item.status==1)
+      
+      console.log(this.StudentComfirmid);
       this.StudentPending = data.filter((item:any)=>item.status==2)
     })
   }

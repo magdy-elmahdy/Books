@@ -22,6 +22,9 @@
                 <div class="d-flex align-items-center mx-1">
                     <i data-bs-toggle="modal" data-bs-target="#AddModal" class="fa-solid fa-circle-plus fs-5 mainIcon bg_light"></i>
                 </div>
+                <!-- <div class="d-flex align-items-center mx-1">
+                    <i (click)="toggleEdit()" class="fa-solid fa-pencil  fs-5 mainIcon bg_light"></i>
+                </div> -->
                 <div class="d-flex align-items-center mx-1">
                     <i (click)="toggleDelete()" class="fa-solid fa-trash fs-5 mainIcon bg_light"></i>
                 </div>
@@ -36,6 +39,7 @@
                         <th class="py-2">username</th>
                         <th class="py-2">Email</th>
                         <th class="py-2">Id</th>
+                        <th class="py-2 Edit" style="display: none;">Edit</th>
                         <th class="py-2 Delete" style="display: none;">Delete</th>
 
                     </thead>
@@ -52,8 +56,11 @@
                             <td class="align-middle">{{item.username}}</td>
                             <td class="align-middle">{{item.email}}</td>
                             <td class="align-middle">{{item.studentid}}</td>
+                            <td class="Edit" style="vertical-align: middle;display: none;">
+                                <i (click)="SelectedItem=item" data-bs-toggle="modal" data-bs-target="#AddModal" class="fa-solid fa-pencil fs-5 px-3 py-2" style="color:#2b2181"></i>
+                            </td>
                             <td class="Delete" style="vertical-align: middle;display: none;">
-                                <i data-bs-toggle="modal" data-bs-target="#DeleteModal" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
+                                <i (click)="SelectedItem=item" data-bs-toggle="modal" data-bs-target="#DeleteModal" class="fa-regular fa-trash-can fs-5 px-3 py-2" style="color:#FF4081"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -146,7 +153,7 @@
                 </h2>
             </div>
             <div class="modal-footer py-3 px-3 d-flex justify-content-between">
-                <button mat-raised-button class="mat-blue">
+                <button [disabled]="isClicked" mat-raised-button color="primary" (click)="SubmitDelete()">
                     <span *ngIf="!this.isClicked">Yes <i class="fa-solid fa-check"></i></span>
                     <span *ngIf="this.isClicked"><i class="fa-solid fa-fan fa-spin"></i></span>
                 </button>

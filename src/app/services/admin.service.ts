@@ -21,6 +21,11 @@ export class AdminService {
     return this._HttpClient.post(this.baseURL+'books',Body,{responseType:'text'})
   }
 
+  // Edit Book
+  EditBook(id:any ,Body:any){
+    return this._HttpClient.put(this.baseURL+'books/'+id,Body,{responseType:'text'})
+  }
+
   
 
   getAllStudents(){
@@ -46,6 +51,15 @@ export class AdminService {
   //  Rejected 
   getAdminRejected(){
     return this._HttpClient.get(this.baseURL+'borrowed_books/borrow-decision/rejected',this.configGet)
+  }
+
+
+
+
+
+  //  Delete Book 
+  DeleteBook(id:any){
+    return this._HttpClient.delete(this.baseURL+'books/'+id,this.configGet)
   }
 
 
