@@ -10,6 +10,7 @@ import { LibraryLoanComponent } from './components/admin/library-loan/library-lo
 import { StudentsComponent } from './components/admin/students/students.component';
 import { HasRoleGuard } from './guards/has-role.guard';
 import { StuBooksComponent } from './components/student/stu-books/stu-books.component';
+import { LandingPageComponent } from './components/shared/landing-page/landing-page.component';
 
 
 
@@ -21,8 +22,9 @@ const routes: Routes = [
   //   data:["Admin"],
   //   component:UsersComponent 
   // },
-  {path:'',component:LoginComponent },
+  {path:'',component:LandingPageComponent },
   {path:'login',component:LoginComponent },
+  {path:'LandingPage',component:LandingPageComponent },
   // Admin
   {path:'signup',canActivate:[HasRoleGuard,AuthGuard],data:["admin"],component:SignUpComponent },
   {path:'AdminDashboard',canActivate:[AuthGuard],component:DashboardComponent },

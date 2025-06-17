@@ -35,6 +35,7 @@ import { StudentsComponent } from './components/admin/students/students.componen
 import { BooksComponent } from './components/admin/books/books.component';
 import { LibraryLoanComponent } from './components/admin/library-loan/library-loan.component';
 import { StuBooksComponent } from './components/student/stu-books/stu-books.component';
+import { LandingPageComponent } from './components/shared/landing-page/landing-page.component';
 
 export function playerFactory(){
   return player;
@@ -54,6 +55,7 @@ export function playerFactory(){
     BooksComponent,
     LibraryLoanComponent,
     StuBooksComponent,
+    LandingPageComponent,
   ],
   imports: [
     BrowserModule,
