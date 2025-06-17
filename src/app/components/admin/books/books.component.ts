@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -8,7 +9,8 @@ declare var $: any
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
-  styleUrls: ['./books.component.scss']
+  styleUrls: ['./books.component.scss'],
+  providers:[DatePipe]
 })
 export class BooksComponent {
   AllItems: any = [
@@ -24,9 +26,10 @@ export class BooksComponent {
   term: any;
   loading: boolean = false
   isClicked: boolean = false
-  
+  SelectedItem: any='';
   ErrorMsg: any = ''
-  constructor( private _ActivatedRoute: ActivatedRoute , private _AdminService:AdminService, private _ToastrService:ToastrService) {}
+  constructor( private _ActivatedRoute: ActivatedRoute ,private _DatePipe:DatePipe,
+     private _AdminService:AdminService, private _ToastrService:ToastrService) {}
   toggleDelete(){
      $('.Delete').toggle(500)
   }
@@ -37,9 +40,22 @@ export class BooksComponent {
       'barcode':new FormControl('',[Validators.required]),
       'published_date':new FormControl('',[Validators.required]),
       'publisher':new FormControl('',[Validators.required]),
-      'quantity':new FormControl('',[Validators.required]),
+      'quantity':new FormControl(''),
       'availability':new FormControl('',[Validators.required]),
   });
+  OpenEditModel(){
+    this.Form.patchValue({
+      title:this.SelectedItem.title,
+      author:this.SelectedItem.author,
+      isbn:this.SelectedItem.isbn,
+      barcode:this.SelectedItem.barcode,
+      publisher:this.SelectedItem.publisher,
+      quantity:this.SelectedItem.quantity,
+      availability:this.SelectedItem.availability,
+      published_date:this._DatePipe.transform(this.SelectedItem.published_date,'YYYY-MM-dd'),
+      
+    })
+  }
   //Pagination Methods
   onTableDataChange(event: any) {
     this.page = event;
@@ -60,8 +76,15 @@ export class BooksComponent {
 
   })
   }
+  ManageBook(){
+    this.isClicked =true
+    if(this.SelectedItem==''){
+        this.SubmitAddBook()
+    }else{
+      this.SubmitEditBook()
+    }
+  }
   SubmitAddBook(){
-        this.isClicked =true
         console.log(this.Form.value);
         this._AdminService.AddBook(this.Form.value).subscribe((res:any)=>{
           console.log(res);
@@ -69,7 +92,7 @@ export class BooksComponent {
           $("#AddModal").modal('toggle')
   
           this.isClicked =false
-        this._ToastrService.success('Student added Successfully')
+        this._ToastrService.success('Book added Successfully')
         },error=>{
           this.isClicked =false
           console.log(error);
@@ -81,6 +104,51 @@ export class BooksComponent {
           })
         })
       }
+  SubmitEditBook(){
+    this._AdminService.EditBook(this.SelectedItem.isbn ,this.Form.value).subscribe((res:any)=>{
+          console.log(res);
+          this.getAllBooks();
+          $("#AddModal").modal('toggle');
+          $('.Edit').toggle(500)
+          this.isClicked =false
+        this._ToastrService.success('Book Edited Successfully')
+        },error=>{
+          this.isClicked =false
+          console.log(error);
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.error,
+          })
+        })
+  }
+  toggleEdit(){
+     $('.Edit').toggle(500)
+  }
+  SubmitDelete(){
+        this.isClicked =true
+        console.log(this.SelectedItem);
+        
+        this._AdminService.DeleteBook(this.SelectedItem?.isbn).subscribe((res:any)=>{
+          console.log(res);
+          this.getAllBooks();
+          $("#DeleteModal").modal('toggle')
+          $('.Delete').toggle(500)
+  
+          this.isClicked =false
+        this._ToastrService.success('Book Deleted Successfully')
+        },error=>{
+          this.isClicked =false
+          console.log(error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.message,
+          })
+        })
+      }
+  
   ngOnInit(): void {
     this.getAllBooks()
   }

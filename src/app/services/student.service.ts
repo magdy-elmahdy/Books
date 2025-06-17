@@ -12,6 +12,9 @@ export class StudentService {
   register(Model:any){
     return this._HttpClient.post(this.baseURL+'users/register' , Model);
   }
+  DeleteStudent(userName:any){
+    return this._HttpClient.delete(this.baseURL+'users/delete/'+userName);
+  }
 
   
   // Get All books

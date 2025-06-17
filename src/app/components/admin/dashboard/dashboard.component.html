@@ -1,13 +1,86 @@
-
-
-
 <div id="Dashboard">
     <div class="container">
         <!-- New  -->
-         <div class="d-flex justify-content-between mt-3">
-            <h2>Welcome , Marwa ! <i class="fa-solid fa-hand"></i></h2>
-            <p>Student ID: {{StudentId}}</p>
-         </div>
+        <!-- Student -->
+        <div *ngIf="Role=='student'">
+            <div class="d-flex justify-content-between mt-3">
+                <h2 class="fs-5">Welcome , Marwa ! <i class="fa-solid fa-hand"></i></h2>
+                <p><span class="fw-bold">Student ID:</span> {{StudentId}}</p>
+            </div>
+            <ul class="nav nav-pills mt-4 px-5 py-4" id="pills-tab" role="tablist">
+                <li class="nav-item w_47 mx-2" role="presentation">
+                    <button class="nav-link active w-100 fw-bold" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true"> Current Borrows </button>
+                </li>
+                <li class="nav-item w_47 mx-2" role="presentation">
+                    <button class="nav-link w-100 fw-bold" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false"> Request Status</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="pills-tabContent">
+                <!-- item 1 -->
+                <div class="tab-pane fade show active mt-3" id="pills-home" role="tabpanel"
+                    aria-labelledby="pills-home-tab" tabindex="0">
+                    <div class="row mt-5">
+                        <h2 class="fs-5">Your current Borrowed Books</h2>
+                        <div *ngFor="let item of StudentComfirmid" class="col-md-4">
+                            <div class="box px-3 py-3 mt-1">
+                                <div class="d-flex justify-content-between">
+                                    <p class="status text-muted fs-6 fw-bold">Currently Borrowed</p>
+                                    <span *ngIf="!item.overdue"
+                                        class="badge rounded-pill text-bg-success px-3">Active</span>
+                                    <span *ngIf="item.overdue"
+                                        class="badge rounded-pill text-bg-danger px-3">Overdue</span>
+                                </div>
+                                <p class="fs-6 fw-bold mt-4">{{item.title}}</p>
+                                <p class="fs-6 mt-3">
+                                    {{item.author}}
+                                </p>
+                                <p class="mt-4"><span class="fw-bold">Due date
+                                        :</span>{{item.return_date|date:'dd/MM/YYYY'}} </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="StudentComfirmid?.length==0"
+                        class="alert alert-secondary text-center fw-bold w-75 m-auto" role="alert">
+                        No Books Borrowed Yet !
+                    </div>
+                </div>
+                <!-- item 2 -->
+                <div class="tab-pane fade active" id="pills-profile" role="tabpanel" aria-labelledby="pills-home-tab"
+                    tabindex="0">
+                    <div class="row mt-5">
+                        <h2 class="fs-5">Your Recent Requests</h2>
+                        <div *ngFor="let item of StudentPending" class="col-md-4">
+                            <div class="box px-3 py-3 mt-1">
+                                <div class="d-flex justify-content-between">
+                                    <p class="status text-muted fs-6 fw-bold">Currently Requested</p>
+                                    <span *ngIf="!item.overdue"
+                                        class="badge rounded-pill text-bg-warning px-3">Pending</span>
+                                </div>
+                                <p class="fs-6 fw-bold mt-4">{{item.title}}</p>
+                                <p class="fs-6 mt-3">
+                                    {{item.author}}
+                                </p>
+                                <p class="mt-4"><span class="fw-bold">Requested
+                                        :</span>{{item.request_start_date|date:'dd/MM/YYYY'}} </p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="StudentPending?.length==0" class="alert alert-secondary text-center fw-bold w-75 m-auto"
+                        role="alert">
+                        No Books Requested Yet !
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
 
 
 
@@ -37,14 +110,14 @@
 
 
 
-
-        <div class="d-flex justify-content-start mx-5 mt-2">
-            <p class="text-center my-4 fw-bold fs-4 " style="color:#463785;" data-aos-duration="900" data-aos="zoom-in"> Dashboard</p>
-        </div> 
-        <div class="outerBorder shadow_5 py-5">
+        <div class="d-flex justify-content-start mx-5 mt-2" *ngIf="Role=='admin'">
+            <p class="text-center my-4 fw-bold fs-4 " style="color:#463785;" data-aos-duration="900" data-aos="zoom-in">
+                Dashboard</p>
+        </div>
+        <div class="outerBorder shadow_5 py-5" *ngIf="Role=='admin'">
             <!----------------- Admin  ------------->
-            <div class="row" *ngIf="Role=='admin'">
-                
+            <div class="row">
+
                 <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-down">
                     <div class="small-box" style="background-color: rgb(151, 151, 151);">
                         <div class="inner">
@@ -55,7 +128,9 @@
                             <i class="fa-solid fa-book"></i>
                         </div>
                         <div class="m-auto box-footer">
-                            <a (click)="AllBooksItems=AdminPending" data-bs-toggle="modal" data-bs-target="#BookDetailsModal" class="text-center">View Books <i class="fa-solid fa-eye fs-6"></i></a> 
+                            <a (click)="AllBooksItems=AdminPending" data-bs-toggle="modal"
+                                data-bs-target="#BookDetailsModal" class="text-center">View Books <i
+                                    class="fa-solid fa-eye fs-6"></i></a>
                         </div>
                     </div>
                 </div>
@@ -66,14 +141,16 @@
                             <p class="fs-5">
                                 <span *ngIf="!isLoading2">{{AdminComfirmid?.length}}</span>
                                 <span *ngIf="isLoading2"><i class="fa-solid fa-fan"></i></span>
-                                 Book
+                                Book
                             </p>
                         </div>
                         <div class="icon">
                             <i class="fa-solid fa-book"></i>
                         </div>
                         <div class="m-auto box-footer">
-                            <a (click)="AllBooksItems=AdminComfirmid" data-bs-toggle="modal" data-bs-target="#BookDetailsModal" class="text-center">View Books <i class="fa-solid fa-eye fs-6"></i></a> 
+                            <a (click)="AllBooksItems=AdminComfirmid" data-bs-toggle="modal"
+                                data-bs-target="#BookDetailsModal" class="text-center">View Books <i
+                                    class="fa-solid fa-eye fs-6"></i></a>
                         </div>
                     </div>
                 </div>
@@ -88,12 +165,14 @@
                             <i class="fa-solid fa-book"></i>
                         </div>
                         <div class="m-auto box-footer">
-                            <a (click)="AllBooksItems=AdminRejected" data-bs-toggle="modal" data-bs-target="#BookDetailsModal" class="text-center">View Books <i class="fa-solid fa-eye fs-6"></i></a> 
+                            <a (click)="AllBooksItems=AdminRejected" data-bs-toggle="modal"
+                                data-bs-target="#BookDetailsModal" class="text-center">View Books <i
+                                    class="fa-solid fa-eye fs-6"></i></a>
                         </div>
                     </div>
                 </div>
                 <!-- Students -->
-                <div class="col-lg-4 col-md-6"data-aos-duration="900" data-aos="fade-right">
+                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-right">
                     <div class="small-box bg_yellow" [dir]="'dir'| translate">
                         <div class="inner">
                             <h2>Students</h2>
@@ -103,63 +182,13 @@
                             <i class="fa-solid fa-user-graduate"></i>
                         </div>
                         <div class="m-auto box-footer">
-                            <a routerLink="/Students" class="text-center">View Students <i class="fa-solid fa-eye fs-6"></i></a> 
+                            <a routerLink="/Students" class="text-center">View Students <i
+                                    class="fa-solid fa-eye fs-6"></i></a>
                         </div>
                     </div>
                 </div>
-                
-                
 
-            </div>
-            <!----------------- student  ------------->
-            <div class="row" *ngIf="Role=='student'">
-                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-down">
-                    <div class="small-box" style="background-color: rgb(151, 151, 151);">
-                        <div class="inner">
-                            <h2>Requested Books</h2>
-                            <p class="fs-5">{{StudentPending?.length}} Book</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-book"></i>
-                        </div>
-                        <div class="m-auto box-footer">
-                            <a (click)="AllBooksItems=StudentPending" data-bs-toggle="modal" data-bs-target="#BookDetailsModal" class="text-center">View Books <i class="fa-solid fa-eye fs-6"></i></a> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-down">
-                    <div class="small-box bg_green">
-                        <div class="inner">
-                            <h2>Borrowed Books</h2>
-                            <p class="fs-5">
-                                <span *ngIf="!isLoading2">{{StudentComfirmid?.length}}</span>
-                                <span *ngIf="isLoading2"><i class="fa-solid fa-fan"></i></span>
-                                 Book
-                            </p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-book"></i>
-                        </div>
-                        <div class="m-auto box-footer">
-                            <a (click)="AllBooksItems=StudentComfirmid" data-bs-toggle="modal" data-bs-target="#BookDetailsModal" class="text-center">View Books <i class="fa-solid fa-eye fs-6"></i></a> 
-                        </div>
-                    </div>
-                </div>
-                <!-- Rejected -->
-                <div class="col-lg-4 col-md-6" data-aos-duration="900" data-aos="fade-left">
-                    <div class="small-box bg-danger">
-                        <div class="inner">
-                            <h2>Rejected Requests</h2>
-                            <p class="fs-5">{{StudentRejected?.length}} Book</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fa-solid fa-book"></i>
-                        </div>
-                        <div class="m-auto box-footer">
-                            <a (click)="AllBooksItems=StudentRejected" data-bs-toggle="modal" data-bs-target="#BookDetailsModal" class="text-center">View Books <i class="fa-solid fa-eye fs-6"></i></a> 
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
         </div>
@@ -176,30 +205,29 @@
             </div>
             <div class="container">
                 <table class="table table-striped text-center">
-                <thead class="tableHead">
-                    <th class="py-2">Title</th>
-                    <th class="py-2">Author</th>
-                    <th class="py-2">Publisher</th>
-                    <th class="py-2">Publication <br> date</th>
-                    <th class="py-2">ISBN</th>
-                    <th class="py-2">Return date</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of AllBooksItems">
-                        <td class="align-middle">{{item.title}}</td>
-                        <td class="align-middle">{{item.author}}</td>
-                        <td class="align-middle">{{item.publisher}}</td>
-                        <td class="align-middle">{{item.published_date|date:'dd/MM/YYYY'}}</td>
-                        <td class="align-middle">{{item.isbn}}</td>
-                        <td class="align-middle">{{item.return_date|date:'dd/MM/YYYY'}}</td>
-                    </tr>
-                </tbody>
+                    <thead class="tableHead">
+                        <th class="py-2">Title</th>
+                        <th class="py-2">Author</th>
+                        <th class="py-2">Publisher</th>
+                        <th class="py-2">Publication <br> date</th>
+                        <th class="py-2">ISBN</th>
+                        <th class="py-2">Return date</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of AllBooksItems">
+                            <td class="align-middle">{{item.title}}</td>
+                            <td class="align-middle">{{item.author}}</td>
+                            <td class="align-middle">{{item.publisher}}</td>
+                            <td class="align-middle">{{item.published_date|date:'dd/MM/YYYY'}}</td>
+                            <td class="align-middle">{{item.isbn}}</td>
+                            <td class="align-middle">{{item.return_date|date:'dd/MM/YYYY'}}</td>
+                        </tr>
+                    </tbody>
 
-            </table>
+                </table>
             </div>
             <div class="modal-footer py-3 px-3 d-flex justify-content-end">
-                <button  id="close" type="button" mat-raised-button
-                    data-bs-dismiss="modal">Close</button>
+                <button id="close" type="button" mat-raised-button data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

@@ -30,6 +30,7 @@ AllStudent: any = [
   tableSize: number = 5;
   tableSizes = [5, 8, 10, 15, 20];
   term: any;
+  SelectedItem: any;
   loading: boolean = false
   isClicked: boolean = false
   ErrorMsg: any = ''
@@ -60,6 +61,28 @@ AllStudent: any = [
         })
       })
     }
+  SubmitDelete(){
+      this.isClicked =true
+      console.log(this.SelectedItem);
+      
+      this._StudentService.DeleteStudent(this.SelectedItem?.username).subscribe((res:any)=>{
+        console.log(res);
+        this.getAllStudents();
+        $("#DeleteModal").modal('toggle')
+        $('.Delete').toggle(500)
+
+        this.isClicked =false
+      this._ToastrService.success('Student Deleted Successfully')
+      },error=>{
+        this.isClicked =false
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.message,
+        })
+      })
+    }
     
   //Pagination Methods
   onTableDataChange(event: any) {
@@ -71,6 +94,9 @@ AllStudent: any = [
   }
   toggleDelete(){
      $('.Delete').toggle(500)
+  }
+  toggleEdit(){
+     $('.Edit').toggle(500)
   }
   getAllStudents(){
     this.loading = true
