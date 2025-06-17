@@ -1,0 +1,81 @@
+
+    /* Start header */
+.header{
+    height:100vh;
+    background-image: url(../../../../assets/imgs/landingImg.jpg);
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+.layer{
+    background-color: rgba(0, 0, 0, 0.0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.navbar{
+
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top:0;
+    right:0;
+    width: 85%;
+    margin: auto;
+    background-color: #FFF7FE;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px!important;
+    // background-color: rgba(0, 0, 0, 0.5);
+}
+
+.logo a{
+    color: #ff305b;
+    font-size: 24px;
+    font-weight:900;
+}
+.menu ul{
+    display: flex;
+}
+.menu ul li{
+ padding:0px 10px;
+}
+.menu ul li a:hover{
+    color: #ff305b;
+
+}
+.head-content{
+
+    text-align: center;
+    background-color: #FFF;
+    opacity: 0.7;
+    padding: 6rem 6rem;
+    border-radius: 0.7rem;
+}
+.head-content h1{
+    font-size: 3.2rem;
+    position: relative!important;
+    z-index: 99999!important;
+    font-weight: bold;
+    color: #000!important;
+}
+.head-content p{
+    font-size: 2rem;
+    position: relative!important;
+    z-index: 99999!important;
+    color: #000!important;
+}
+    /* End header */
+
+
+    .btn_test{
+  border-radius: 1.8rem;
+  // background-color: #d97706;
+  border:solid 3px #F99D1C ;
+  font-weight: bold!important;
+  color: #F99D1C;
+}
+.btn_test:hover{
+  background-color: #F99D1C;
+  color:#fff
+}
