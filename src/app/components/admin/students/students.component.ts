@@ -19,12 +19,10 @@ export class StudentsComponent {
     'password':new FormControl('',[Validators.required]),
     'studentid':new FormControl('',[Validators.required]),
   });
-AllStudent: any = [
-    {fullName:'Aya Essam',Email:'aya12@gmail.com', id:'37657485'},
-    {fullName:'Rania Adel',Email:'rania25@gmail.com', id:'4565657485'},
-    {fullName:'Lama Ashraf',Email:'lama12@gmail.com', id:'96357485'},
-    {fullName:'Ahmed Samy',Email:'ahmed2d@gmail.com', id:'67657485'},
-  ]
+  search1: string = '';
+  search2: string = '';
+  search3: string = '';
+AllStudent: any = []
   page: number = 1;
   count: number = 0;
   tableSize: number = 5;

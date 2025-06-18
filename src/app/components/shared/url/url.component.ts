@@ -20,10 +20,11 @@ export class UrlComponent {
   UrlValue:any='';
   
   async saveUrl(){
-    await localStorage.setItem('url',this.UrlValue);
+    await localStorage.setItem('url',this.UrlValue+'/');
     await localStorage.removeItem('BooksToken');
     await localStorage.removeItem("BooksRole");
     await localStorage.removeItem("BooksId");
+    await localStorage.removeItem("BooksName");
     await this._Router.navigate(['/login']);
     window.location.reload();
   }

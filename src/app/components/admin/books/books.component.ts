@@ -21,13 +21,16 @@ export class BooksComponent {
   ]
   page: number = 1;
   count: number = 0;
-  tableSize: number = 5;
+  tableSize: number = 10;
   tableSizes = [5, 8, 10, 15, 20];
   term: any;
   loading: boolean = false
   isClicked: boolean = false
   SelectedItem: any='';
   ErrorMsg: any = ''
+  search1: string = '';
+  search2: string = '';
+  search3: string = '';
   constructor( private _ActivatedRoute: ActivatedRoute ,private _DatePipe:DatePipe,
      private _AdminService:AdminService, private _ToastrService:ToastrService) {}
   toggleDelete(){
@@ -42,6 +45,7 @@ export class BooksComponent {
       'publisher':new FormControl('',[Validators.required]),
       'quantity':new FormControl(''),
       'availability':new FormControl('',[Validators.required]),
+      'image':new FormControl('',[Validators.required]),
   });
   OpenEditModel(){
     this.Form.patchValue({
@@ -59,18 +63,20 @@ export class BooksComponent {
   //Pagination Methods
   onTableDataChange(event: any) {
     this.page = event;
+    this.getAllBooks(this.page)
   }
-  onTableSizeChange(event: any) {
-    this.tableSize = event.target.value;
-    this.page = 1;
-  }
-  getAllBooks(){
+  // onTableSizeChange(event: any) {
+  //   this.tableSize = event.target.value;
+  //   this.page = 1;
+  // }
+  getAllBooks(page:any){
     this.loading = true
-    this._AdminService.getAllBooks().subscribe((res:any)=>{
+    this._AdminService.getAllBooks(page).subscribe((res:any)=>{
       this.loading = false
-      this.AllItems = res;
-      this.loading = false;
-      console.log(this.AllItems); 
+      console.log(res); 
+      this.AllItems = res.books;
+      this.count =res.totalBooks
+      
     }, error => {
       this.loading = false
 
@@ -84,11 +90,41 @@ export class BooksComponent {
       this.SubmitEditBook()
     }
   }
+  selectedFile:any
+  base64:any
+  onLogoUpload(event: any) {
+    const file = event.target.files[0];
+   
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
+    if (file.size > maxSizeInBytes) {
+      alert('Image size exceeds the maximum limit of 5 MB.');
+      event.target.value = ''; // Clear the input
+    }else{
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () =>{
+        this.base64 = reader.result;
+        this.Form.get('image')?.setValue(this.base64)
+        // console.log(this.Form.get('image')?.value);
+        
+        
+      } 
+    }
+  }
+  removeLogo() {
+    this.base64 = ''
+    this.Form.get('image')?.setValue('');
+  }
   SubmitAddBook(){
         console.log(this.Form.value);
-        this._AdminService.AddBook(this.Form.value).subscribe((res:any)=>{
+        let Model =Object.assign(this.Form.value,{
+          image: this.base64,
+        });
+        console.log(Model);
+        
+        this._AdminService.AddBook(Model).subscribe((res:any)=>{
           console.log(res);
-          this.getAllBooks();
+          this.getAllBooks(1);
           $("#AddModal").modal('toggle')
   
           this.isClicked =false
@@ -107,7 +143,7 @@ export class BooksComponent {
   SubmitEditBook(){
     this._AdminService.EditBook(this.SelectedItem.isbn ,this.Form.value).subscribe((res:any)=>{
           console.log(res);
-          this.getAllBooks();
+          this.getAllBooks(1);
           $("#AddModal").modal('toggle');
           $('.Edit').toggle(500)
           this.isClicked =false
@@ -132,7 +168,7 @@ export class BooksComponent {
         
         this._AdminService.DeleteBook(this.SelectedItem?.isbn).subscribe((res:any)=>{
           console.log(res);
-          this.getAllBooks();
+          this.getAllBooks(1);
           $("#DeleteModal").modal('toggle')
           $('.Delete').toggle(500)
   
@@ -150,7 +186,7 @@ export class BooksComponent {
       }
   
   ngOnInit(): void {
-    this.getAllBooks()
+    this.getAllBooks(1)
   }
 
 

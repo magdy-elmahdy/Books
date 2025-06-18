@@ -4,15 +4,15 @@
             <div class="col-md-9 d-flex">
                 <div class="form_group mx-1">
                     <label class="fo_1 px-4 pb-2 text-black">Title</label>
-                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.Book">
+                    <input [(ngModel)]="search1" type="text" class="form-control CusInput bg_light" placeholder="ex.Book">
                 </div>
                 <div class="form_group mx-1">
                     <label class="fo_1 px-4 pb-2 text-black">Author</label>
-                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.Ahmed">
+                    <input [(ngModel)]="search2" type="text" class="form-control CusInput bg_light" placeholder="ex.Ahmed">
                 </div>
                 <div class="form_group mx-1">
                     <label class="fo_1 px-4 pb-2 text-black">Publisher</label>
-                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.Ali">
+                    <input [(ngModel)]="search3" type="text" class="form-control CusInput bg_light" placeholder="ex.Ali">
                 </div>
             </div>
             <div class="col-md-3 d-flex px-2 mt-3">
@@ -37,12 +37,12 @@
                 </thead>
                 <tbody >
 
-                    <tr  *ngFor="let item of AllItems|search:term|paginate:{
+                    <tr  *ngFor="let item of AllItems|search:search1:search2:search3|paginate:{
                             itemsPerPage:tableSize,
                             currentPage:page,
                             totalItems:count}; let i=index">
                         <td style="max-width: 1rem;">
-                            <img src="../../../assets/imgs/book.jpg" class="w-75">
+                            <img src="{{item.image}}" class="w-75">
                         </td>
                         <td class="align-middle">{{item.title}}</td>
                         <td class="align-middle">{{item.author}}</td>

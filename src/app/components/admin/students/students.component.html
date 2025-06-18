@@ -4,16 +4,17 @@
             <div class="col-md-9 d-flex">
                 <div class="form_group mx-1">
                     <label class="fo_1 px-4 pb-2 text-black">Full Name</label>
-                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.Admed Ali">
+                    <input [(ngModel)]="search1" type="text" class="form-control CusInput bg_light" placeholder="ex.Admed Ali">
+                </div>
+                <div class="form_group mx-1">
+                    <label class="fo_1 px-4 pb-2 text-black">UserName</label>
+                    <input [(ngModel)]="search3" type="text" class="form-control CusInput bg_light" placeholder="Mohamed@123">
                 </div>
                 <div class="form_group mx-1">
                     <label class="fo_1 px-4 pb-2 text-black">Email</label>
-                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.aya@gmail.com">
+                    <input [(ngModel)]="search2" type="text" class="form-control CusInput bg_light" placeholder="ex.aya@gmail.com">
                 </div>
-                <div class="form_group mx-1">
-                    <label class="fo_1 px-4 pb-2 text-black">ID</label>
-                    <input type="text" class="form-control CusInput bg_light" placeholder="ex.145454">
-                </div>
+                
             </div>
             <div class="col-md-3 d-flex px-2 mt-3">
                 <div class="d-flex align-items-center mx-1">
@@ -45,7 +46,7 @@
                     </thead>
                     <tbody *ngIf="this.ErrorMsg==''">
                         
-                        <tr *ngFor="let item of AllStudent|search:term|paginate:{
+                        <tr *ngFor="let item of AllStudent|searchStudent:search1:search2:search3|paginate:{
                             itemsPerPage:tableSize,
                             currentPage:page,
                             totalItems:count}; let i=index">

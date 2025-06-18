@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'search'
+  name: 'searchStudent'
 })
-export class SearchPipe implements PipeTransform {
+export class SearchStudentPipe implements PipeTransform {
 
   transform(items: any[], search1: string, search2: string, search3: string): any[] {
     if (!items) return [];
@@ -13,9 +13,9 @@ export class SearchPipe implements PipeTransform {
     search3 = (search3 || '').toLowerCase();
 
     return items.filter(item =>
-      (!search1 || item.title.toLowerCase().includes(search1)) &&
-      (!search2 || item.author.toLowerCase().includes(search2)) &&
-      (!search3 || item.publisher.toLowerCase().includes(search3))
+      (!search1 || item.fullname.toLowerCase().includes(search1)) &&
+      (!search2 || item.email.toLowerCase().includes(search2)) &&
+      (!search3 || item.username.toLowerCase().includes(search3))
     );
   }
 

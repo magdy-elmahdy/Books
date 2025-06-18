@@ -4,7 +4,7 @@
         <!-- Student -->
         <div *ngIf="Role=='student'">
             <div class="d-flex justify-content-between mt-3">
-                <h2 class="fs-5">Welcome , Marwa ! <i class="fa-solid fa-hand"></i></h2>
+                <h2 class="fs-5">Welcome , {{Name}} ! <i class="fa-solid fa-hand"></i></h2>
                 <p><span class="fw-bold">Student ID:</span> {{StudentId}}</p>
             </div>
             <ul class="nav nav-pills mt-4 px-5 py-4" id="pills-tab" role="tablist">
@@ -176,7 +176,7 @@
                     <div class="small-box bg_yellow" [dir]="'dir'| translate">
                         <div class="inner">
                             <h2>Students</h2>
-                            <p class="fs-5">{{AllStudent.length}} Student</p>
+                            <p class="fs-5">{{AllStudent?.length}} Student</p>
                         </div>
                         <div class="icon">
                             <i class="fa-solid fa-user-graduate"></i>

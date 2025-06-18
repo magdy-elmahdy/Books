@@ -21,8 +21,8 @@ export class AdminService {
 
 
   // Get All books
-  getAllBooks(){
-    return this._HttpClient.get(this.baseURL+'books',this.configGet)
+  getAllBooks(page:any){
+    return this._HttpClient.get(this.baseURL+'books?page='+page,this.configGet)
   }
 
   // Add Book
@@ -38,7 +38,7 @@ export class AdminService {
   
 
   getAllStudents(){
-    return this._HttpClient.get(this.baseURL+'users/students');
+    return this._HttpClient.get(this.baseURL+'users/students',this.configGet);
   }
 
 

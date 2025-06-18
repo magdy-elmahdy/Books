@@ -11,12 +11,10 @@ declare var $: any
   styleUrls: ['./stu-books.component.scss']
 })
 export class StuBooksComponent {
-AllItems: any = [
-    {title:'Basic Linear Algebra.',Author:'B.S. Blyth.',Publisher:'Springer-Verla', Publication:'September 2018',ISBN:'978-3-319-77535-9.',available:'available'},
-    {title:'Basic Linear Algebra.',Author:'B.S. Blyth.',Publisher:'Springer-Verla', Publication:'September 2018',ISBN:'978-3-319-77535-9.',available:'not Available'},
-    {title:'Basic Linear Algebra.',Author:'B.S. Blyth.',Publisher:'Springer-Verla', Publication:'September 2018',ISBN:'978-3-319-77535-9.',available:'available'},
-    {title:'Basic Linear Algebra.',Author:'B.S. Blyth.',Publisher:'Springer-Verla', Publication:'September 2018',ISBN:'978-3-319-77535-9.',available:'available'},
-  ]
+AllItems: any = []
+  search1: string = '';
+  search2: string = '';
+  search3: string = '';
   page: number = 1;
   count: number = 0;
   tableSize: number = 5;

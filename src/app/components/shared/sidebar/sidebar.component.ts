@@ -10,8 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SidebarComponent implements OnInit{
   customersTypes:any
   Role:any
+  Name:any
   constructor( public _Router:Router, public _AuthService:AuthService){
     this.Role = localStorage.getItem('BooksRole')!
+    this.Name = localStorage.getItem('BookName')!
 }
 
   getCustomerTypes(){

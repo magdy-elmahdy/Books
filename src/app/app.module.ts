@@ -37,7 +37,7 @@ import { LibraryLoanComponent } from './components/admin/library-loan/library-lo
 import { StuBooksComponent } from './components/student/stu-books/stu-books.component';
 import { LandingPageComponent } from './components/shared/landing-page/landing-page.component';
 import { UrlComponent } from './components/shared/url/url.component';
-
+import { SearchStudentPipe } from './pipes/search-student.pipe';
 export function playerFactory(){
   return player;
 }
@@ -57,7 +57,9 @@ export function playerFactory(){
     LibraryLoanComponent,
     StuBooksComponent,
     LandingPageComponent,
-    UrlComponent
+    UrlComponent,
+    SearchPipe,
+    SearchStudentPipe
   ],
   imports: [
     BrowserModule,

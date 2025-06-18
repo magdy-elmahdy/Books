@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent {
-
+  Name:any
+  constructor(){
+    this.Name = localStorage.getItem('BookName')!
+}
 }

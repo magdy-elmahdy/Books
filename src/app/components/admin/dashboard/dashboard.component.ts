@@ -26,7 +26,12 @@ export class DashboardComponent implements OnInit{
   isLoading4:boolean=false;
   Role:any=localStorage.getItem('BooksRole')!
   StudentId:any=localStorage.getItem('BooksId')!
-  constructor(private _AdminService:AdminService,public _AuthService:AuthService, private _StudentService:StudentService){}
+  Name:any
+  constructor(private _AdminService:AdminService,public _AuthService:AuthService, private _StudentService:StudentService){
+
+    this.Name = localStorage.getItem('BookName')!
+
+  }
 
 
   /////////////////////////// Admin ///////////////////////
