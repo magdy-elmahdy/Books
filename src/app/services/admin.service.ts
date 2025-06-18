@@ -1,13 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  baseURL:any='http://51.20.126.142:4000/';
   configGet:any ={headers: new HttpHeaders().set("ngrok-skip-browser-warning", "true")}
-  constructor(private _HttpClient:HttpClient) {}
+  url:any = localStorage.getItem('url')
+  baseURL:any
+  constructor(private _HttpClient:HttpClient) {
+    if(localStorage.getItem('url')==null){
+      this.baseURL = environment.baseUrl
+    }else{
+      this.baseURL = ''
+      this.baseURL = 'https://'+localStorage.getItem('url')
+    }
+  }
 
 
 

@@ -11,6 +11,7 @@ import { StudentsComponent } from './components/admin/students/students.componen
 import { HasRoleGuard } from './guards/has-role.guard';
 import { StuBooksComponent } from './components/student/stu-books/stu-books.component';
 import { LandingPageComponent } from './components/shared/landing-page/landing-page.component';
+import { UrlComponent } from './components/shared/url/url.component';
 
 
 
@@ -25,6 +26,8 @@ const routes: Routes = [
   {path:'',component:LandingPageComponent },
   {path:'login',component:LoginComponent },
   {path:'LandingPage',component:LandingPageComponent },
+  {path:'url',component:UrlComponent},
+
   // Admin
   {path:'signup',canActivate:[HasRoleGuard,AuthGuard],data:["admin"],component:SignUpComponent },
   {path:'AdminDashboard',canActivate:[AuthGuard],component:DashboardComponent },
