@@ -15,7 +15,7 @@ export class StudentService {
         this.baseURL = environment.baseUrl
       }else{
         this.baseURL = ''
-        this.baseURL = 'https://'+localStorage.getItem('url')
+        this.baseURL = 'http://'+localStorage.getItem('url')
       }
     }
   register(Model:any){
